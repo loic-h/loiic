@@ -1,32 +1,14 @@
 import events from './events';
-import './events/scroll';
 import globals from './globals';
-import objectFitImages from 'object-fit-images';
-import './modules/preload';
+import cmd from './modules/cmd';
+import Input from './modules/input';
 
-// Defaults
-move.defaults = {
-	duration: 200,
-	ease: 'in-out'
-};
+const container = document.getElementById('layout');
 
-// Routing
-page({
-	dispatch: false
+events.on('cmd:ready', (data) => {
+	init();
 });
 
-// Preloading
-const loadPromises = [
-	new Promise((resolve) => {
-		setTimeout(resolve, 500);
-	}),
-	new Promise((resolve) => {
-		events.on('preloaded', resolve);
-	})
-];
-Promise.all(loadPromises).then(() => {
-	document.querySelector('body').classList.add('loaded');
-});
-
-// Polyfill object-fit
-objectFitImages();
+function init() {
+	Input.init(container);
+}

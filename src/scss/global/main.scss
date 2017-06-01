@@ -13,6 +13,10 @@ html, body {
 	}
 }
 
+*:focus {
+	outline: none;
+}
+
 p {
 	margin-bottom: $base;
 
@@ -29,4 +33,9 @@ p {
 
 .bold {
 	font-weight: bold;
+}
+
+#container {
+	padding: $base;
+	box-sizing: border-box;
 }

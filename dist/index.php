@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="<?php echo $site->language()->code ?>" class="no-js">
+<html dir="ltr" lang="en" class="no-js">
 <head>
 	<meta charset="utf-8">
 	<title>Loïc Hamet _ Web development</title>
@@ -11,8 +11,12 @@
 <body class="layout">
 	<div id="container">
 		<div class="loader"></div>
-		<div class="content">
-
+		<div id="layout">
+			<input class="dummy" type="text" value="" />
+			<div class="input-wrapper">
+				<span class="input" contenteditable="true"></span>
+				<span class="cursor"></span>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="/assets/js/app.js"></script>

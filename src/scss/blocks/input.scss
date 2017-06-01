@@ -1,0 +1,11 @@
+.input {
+	position: relative;
+	z-index: 2;
+	min-height: 1em;
+	display: inline-block;
+
+	&-wrapper {
+		position: relative;
+		display: inline-block;
+	}
+}

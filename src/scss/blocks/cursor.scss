@@ -1,0 +1,17 @@
+.cursor {
+	position: absolute;
+	border-bottom: solid 1px black;
+	height: 1em;
+	width: 0.8em;
+	display: block;
+	top: 0;
+	left: 100%;
+	animation: blink 1s step-start 0s infinite;
+	z-index: 1;
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}

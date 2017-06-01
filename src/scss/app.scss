@@ -1,3 +1,4 @@
+@import "global/reset.scss";
 @import "global/variables.scss";
 
 @import "include-media/dist/include-media";
@@ -14,3 +15,9 @@
 @import "helpers/container";
 @import "helpers/grid";
 @import "helpers/placeholder";
+
+@import "global/main";
+
+@import "blocks/input";
+@import "blocks/cursor";
+@import "blocks/dummy";
