@@ -1,83 +1,80 @@
 import events from '../events';
 
-export default {
+let dummy;
+let input;
+let container;
+let cursor;
+let defaultCursorWidth = 0;
 
-	dummy: null,
-	input: null,
-	container: null,
-	cursor: null,
-	defaultCursorWidth: 0,
+function init(cont) {
+	container = cont;
 
-	keys: {
+	dummy = container.querySelector('.dummy');
+	input = container.querySelector('.input');
+	cursor = container.querySelector('.cursor');
+	defaultCursorWidth = window.getComputedStyle(cursor).width;
 
-	},
+	setEvents();
 
-	init(container) {
-		this.container = container;
+	dummy.focus();
+}
 
-		this.dummy = container.querySelector('.dummy');
-		this.input = container.querySelector('.input');
-		this.cursor = container.querySelector('.cursor');
-		this.defaultCursorWidth = window.getComputedStyle(this.cursor).width;
+function setEvents() {
+	dummy.addEventListener('blur', () => {
+		setTimeout(() => dummy.focus(), 10);
+		positionCursor();
+	});
 
-		this.setEvents();
-
-		this.dummy.focus();
-	},
-
-	setEvents() {
-		this.dummy.addEventListener('blur', () => {
-			setTimeout(() => this.dummy.focus(), 10);
-			this.positionCursor();
-		});
-
-		this.dummy.addEventListener('input', () => {
-			this.input.innerHTML = '';
-			const letters = Array.from(this.dummy.value);
-			for(let i in letters) {
-				const s = document.createElement('span');
-				s.innerHTML = letters[i];
-				this.input.appendChild(s);
-			}
-			this.positionCursor();
-		});
-
-		this.dummy.addEventListener('keydown', (e) => {
-			this.positionCursor();
-
-			if (e.key === 'Enter') {
-				events.emit('input:enter', this.dummy.value);
-				this.clear();
-			}
-		});
-
-		this.dummy.addEventListener('keyup', (e) => {
-			this.positionCursor();
-		});
-	},
-
-	positionCursor() {
-		let top, left, width;
-		const index = this.dummy.selectionStart;
-		const spans = this.input.querySelectorAll('span');
-		let ref = spans[index];
-		if (!ref) {
-			top = 0;
-			left = '100%';
-			width = this.defaultCursorWidth;
-		} else {
-			top = ref.offsetTop + 'px';
-			left = ref.offsetLeft + 'px';
-			width = ref.offsetWidth + 'px';
+	dummy.addEventListener('input', () => {
+		input.innerHTML = '';
+		const letters = Array.from(dummy.value);
+		for(let i in letters) {
+			const s = document.createElement('span');
+			s.innerHTML = letters[i];
+			input.appendChild(s);
 		}
-		this.cursor.style.top = top;
-		this.cursor.style.left = left;
-		this.cursor.style.width = width;
-	},
+		positionCursor();
+	});
 
-	clear() {
-		this.dummy.value = '';
-		this.input.innerHTML = '';
-		this.positionCursor();
+	dummy.addEventListener('keydown', (e) => {
+		positionCursor();
+
+		if (e.key === 'Enter') {
+			events.emit('input:enter', dummy.value);
+			clear();
+		}
+	});
+
+	dummy.addEventListener('keyup', (e) => {
+		positionCursor();
+	});
+}
+
+function positionCursor() {
+	let top, left, width;
+	const index = dummy.selectionStart;
+	const spans = input.querySelectorAll('span');
+	let ref = spans[index];
+	if (!ref) {
+		top = 0;
+		left = '100%';
+		width = defaultCursorWidth;
+	} else {
+		top = ref.offsetTop + 'px';
+		left = ref.offsetLeft + 'px';
+		width = ref.offsetWidth + 'px';
 	}
+	cursor.style.top = top;
+	cursor.style.left = left;
+	cursor.style.width = width;
+}
+
+function clear() {
+	dummy.value = '';
+	input.innerHTML = '';
+	positionCursor();
+}
+
+export default {
+	init
 };
