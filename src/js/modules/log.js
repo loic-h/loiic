@@ -3,7 +3,6 @@ let container;
 
 function init(cont) {
 	container = cont;
-	console.log(container);
 }
 
 function add(text) {
