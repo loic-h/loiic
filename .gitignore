@@ -1,4 +1,10 @@
 tmp
 node_modules/
+dist/assets/css/*
+dist/assets/favicons/*
+dist/assets/fonts/*
+dist/assets/icons/*
+dist/assets/img/*
+dist/assets/js/*
 
 /vendor/
