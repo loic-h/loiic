@@ -12,6 +12,7 @@
 	<div id="container">
 		<div class="loader"></div>
 		<div id="layout">
+			<div class="log"></div>
 			<input class="dummy" type="text" value="" />
 			<div class="input-wrapper">
 				<span class="input" contenteditable="true"></span>

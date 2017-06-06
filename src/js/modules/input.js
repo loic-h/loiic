@@ -1,3 +1,5 @@
+import events from '../events';
+
 export default {
 
 	dummy: null,
@@ -42,6 +44,11 @@ export default {
 
 		this.dummy.addEventListener('keydown', (e) => {
 			this.positionCursor();
+
+			if (e.key === 'Enter') {
+				events.emit('input:enter', this.dummy.value);
+				this.clear();
+			}
 		});
 
 		this.dummy.addEventListener('keyup', (e) => {
@@ -66,5 +73,11 @@ export default {
 		this.cursor.style.top = top;
 		this.cursor.style.left = left;
 		this.cursor.style.width = width;
+	},
+
+	clear() {
+		this.dummy.value = '';
+		this.input.innerHTML = '';
+		this.positionCursor();
 	}
 };
