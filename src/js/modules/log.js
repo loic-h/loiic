@@ -9,6 +9,7 @@ function init(cont) {
 
 	events.on('log:clear', clear);
 	events.on('log:error', error);
+	events.on('log:404', notFound);
 }
 
 function add(text, modifiers) {
@@ -27,6 +28,10 @@ function add(text, modifiers) {
 
 function error(text) {
 	add(text, ['error']);
+}
+
+function notFound(cmd) {
+	error(`${cmd}: command not found`);
 }
 
 function clear() {

@@ -19,8 +19,9 @@ function run(key) {
 	const keys = key.split(' ');
 	key = keys[0];
 	const args = keys.slice(1);
-	let cmd = keywords[key] || keywords['404'];
+	let cmd = keywords[key];
 	if (!cmd) {
+		events.emit('log:404', key);
 		return;
 	}
 	const data = {
@@ -44,8 +45,6 @@ export default {
 IMPORT ALL COMMANDS
 ***/
 
-import _404 from './404';
-set(_404);
 import home from './home';
 set(home);
 import hello from './hello';
