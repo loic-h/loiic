@@ -8,7 +8,7 @@ export default {
 		<li>
 			<a href="${k}">${k}</a>: ${d.helps[k]}
 		</li>
-	`)}
+	`).join('')}
 </ul>
 		`;
 	}

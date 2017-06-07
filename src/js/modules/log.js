@@ -1,6 +1,7 @@
 import events from '../events';
 
 const entries = [];
+const entryClass = 'log-entry';
 let container;
 
 function init(cont) {
@@ -9,10 +10,16 @@ function init(cont) {
 	events.on('log:clear', clear);
 }
 
-function add(text) {
+function add(text, modifiers) {
 	entries.push(text);
 	const line = document.createElement('div');
-	line.className = 'log-entry';
+	let classes = [entryClass];
+	if (modifiers) {
+		if (Array.isArray(modifiers)) {
+			classes = classes.concat(modifiers.map((mod) => `${entryClass}--${mod}`));
+		}
+	}
+	line.className = classes.join(' ');
 	line.innerHTML = text;
 	container.appendChild(line);
 }

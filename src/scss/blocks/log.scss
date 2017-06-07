@@ -1,0 +1,13 @@
+.log {
+
+	&-entry {
+		margin-bottom: $base/2;
+
+		&--cmd {
+			// color: grey;
+			&:after {
+				content: ' _';
+			}
+		}
+	}
+}

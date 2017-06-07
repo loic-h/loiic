@@ -4,4 +4,4 @@ export default {
 	out(d) {
 		d.events.emit('log:clear');
 	}
-}
+};

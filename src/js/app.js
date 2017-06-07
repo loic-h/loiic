@@ -16,7 +16,7 @@ function init() {
 }
 
 function doCmd(key) {
-	Log.add(key);
+	Log.add(key, ['cmd']);
 	outCmd(key);
 }
 

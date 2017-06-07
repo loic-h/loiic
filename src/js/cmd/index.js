@@ -1,8 +1,8 @@
 import events from '../events';
+import projects from '../projects';
 
 const cmds = [];
 const keywords = {};
-const projects = {};
 const helps = {};
 
 
@@ -51,4 +51,6 @@ import help from './help';
 set(help);
 import clear from './clear';
 set(clear);
+import list from './projects';
+set(list);
 
