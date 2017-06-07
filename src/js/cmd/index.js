@@ -24,6 +24,13 @@ function run(key) {
 		events.emit('log:404', key);
 		return;
 	}
+	if (cmd.args && args.length < cmd.args.length) {
+		events.emit('log:error', `
+${key}: Missing argument.<br />
+Use: ${key} ${cmd.args.map(a => `'${a}'`).join(' ')}
+		`);
+		return;
+	}
 	const data = {
 		key,
 		projects,
