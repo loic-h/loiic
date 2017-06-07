@@ -8,6 +8,7 @@ function init(cont) {
 	container = cont;
 
 	events.on('log:clear', clear);
+	events.on('log:error', error);
 }
 
 function add(text, modifiers) {
@@ -24,6 +25,10 @@ function add(text, modifiers) {
 	container.appendChild(line);
 }
 
+function error(text) {
+	add(text, ['error']);
+}
+
 function clear() {
 	entries.splice(0, entries.length);
 	container.innerHTML = '';
@@ -31,5 +36,6 @@ function clear() {
 
 export default {
 	init,
-	add
+	add,
+	error
 };

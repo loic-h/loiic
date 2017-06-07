@@ -11,4 +11,4 @@ export default {
 		date: '2017',
 		url: 'lilianvontrapp.com'
 	}
-}
+};

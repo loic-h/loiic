@@ -16,16 +16,19 @@ function set(d) {
 }
 
 function run(key) {
+	const keys = key.split(' ');
+	key = keys[0];
+	const args = keys.slice(1);
 	let cmd = keywords[key] || keywords['404'];
 	if (!cmd) {
 		return;
 	}
-
 	const data = {
 		key,
 		projects,
 		helps,
-		events
+		events,
+		args
 	};
 	const out = cmd.out(data);
 	return out;
@@ -53,4 +56,6 @@ import clear from './clear';
 set(clear);
 import list from './projects';
 set(list);
+import go from './go';
+set(go);
 
