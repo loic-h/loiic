@@ -1,8 +1,12 @@
+import events from '../events';
+
 const entries = [];
 let container;
 
 function init(cont) {
 	container = cont;
+
+	events.on('log:clear', clear);
 }
 
 function add(text) {
@@ -13,7 +17,12 @@ function add(text) {
 	container.appendChild(line);
 }
 
+function clear() {
+	entries.splice(0, entries.length);
+	container.innerHTML = '';
+}
+
 export default {
 	init,
 	add
-}
+};
