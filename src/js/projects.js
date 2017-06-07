@@ -9,6 +9,6 @@ export default {
 		title: 'Lilian Von trapp',
 		text: 'Lorem Ipsum',
 		date: '2017',
-		url: 'lilianvontrapp.com'
+		url: 'http://lilianvontrapp.com'
 	}
 };
