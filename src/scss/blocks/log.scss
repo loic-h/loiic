@@ -1,13 +1,18 @@
 .log {
+	@include clearfix;
 
 	&-entry {
 		margin-bottom: $base/2;
+		float: left;
+		clear: left;
+		max-width: 100%;
+		word-wrap: break-word;
 
 		&--cmd {
-			// color: grey;
-			// &:after {
-			// 	content: ' _';
-			// }
+
+			span {
+				background: yellow;
+			}
 		}
 	}
 }

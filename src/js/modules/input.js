@@ -34,20 +34,18 @@ function setEvents() {
 		positionCursor();
 
 		if (e.key === 'Enter') {
-			events.emit('input:enter', dummy.value, true);
+			events.emit('app:doCmd', dummy.value);
 			clear();
 		}
 
 		if (e.key === 'ArrowUp') {
 			e.preventDefault();
 			type(History.previous());
-			setPositionCursor();
 		}
 
 		if (e.key === 'ArrowDown') {
 			e.preventDefault();
 			type(History.next());
-			setPositionCursor();
 		}
 	});
 
@@ -61,9 +59,14 @@ function positionCursor() {
 	const index = dummy.selectionStart;
 	const spans = input.querySelectorAll('span');
 	let ref = spans[index];
-	if (!ref) {
+	if (index <= 0) {
 		top = 0;
 		left = '100%';
+		width = defaultCursorWidth;
+	} else if (index >= spans.length) {
+		ref = spans[spans.length - 1];
+		top = ref.offsetTop + 'px';
+		left = (ref.offsetLeft + ref.offsetWidth) + 'px';
 		width = defaultCursorWidth;
 	} else {
 		top = ref.offsetTop + 'px';
@@ -73,14 +76,6 @@ function positionCursor() {
 	cursor.style.top = top;
 	cursor.style.left = left;
 	cursor.style.width = width;
-}
-
-function setPositionCursor(pos) {
-	// if (!pos && pos !== 0) {
-	// 	pos = dummy.value.length;
-	// }
-	// console.log(pos);
-	// dummy.setSelectionRange(pos, pos);
 }
 
 

@@ -12,7 +12,9 @@ function init() {
 	Input.init(container);
 	Log.init(container.querySelector('.log'));
 
-	events.on('input:enter', doCmd);
+	events.on('app:doCmd', key => {
+		page(key);
+	});
 
 	window.addEventListener('popstate', (e) => {
 		Log.clear();
@@ -22,14 +24,20 @@ function init() {
 
 	outCmd('home');
 
-	page('/:cmd', pageCallback);
-	page('/:cmd/*', pageCallback);
+	page('*', (ctx, next) => {
+		let cmd = ctx.params[0].replace(/^\//, '');
+		cmd = cmd.replace('/', ' ')
+		if (cmd === '') {
+			return;
+		}
+		doCmd(cmd, !ctx.init);
+	});
 
 	page();
 }
 
 function doCmd(key, store = false) {
-	Log.add(key, ['cmd']);
+	Log.add(`<span>${key}</span>`, ['cmd']);
 	outCmd(key, store);
 }
 
@@ -41,14 +49,6 @@ function outCmd(key, store = false) {
 	if (out) {
 		Log.add(out);
 	}
-}
-
-function pageCallback(ctx, next) {
-	let cmd = ctx.params.cmd;
-	if (ctx.params[0]) {
-		cmd += ' ' + ctx.params[0].split('/').join(' ');
-	}
-	doCmd(cmd);
 }
 
 init();
