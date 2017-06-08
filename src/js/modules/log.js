@@ -42,5 +42,6 @@ function clear() {
 export default {
 	init,
 	add,
-	error
+	error,
+	clear
 };

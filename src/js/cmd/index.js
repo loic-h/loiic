@@ -44,7 +44,8 @@ Use: ${key} ${cmd.args.map(a => `'${a}'`).join(' ')}
 
 export default {
 	set,
-	run
+	run,
+	cmds
 };
 
 

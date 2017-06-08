@@ -1,4 +1,5 @@
 import events from '../events';
+import History from './history';
 
 let dummy;
 let input;
@@ -26,22 +27,27 @@ function setEvents() {
 	});
 
 	dummy.addEventListener('input', () => {
-		input.innerHTML = '';
-		const letters = Array.from(dummy.value);
-		for(let i in letters) {
-			const s = document.createElement('span');
-			s.innerHTML = letters[i];
-			input.appendChild(s);
-		}
-		positionCursor();
+		type(dummy.value);
 	});
 
 	dummy.addEventListener('keydown', (e) => {
 		positionCursor();
 
 		if (e.key === 'Enter') {
-			events.emit('input:enter', dummy.value);
+			events.emit('input:enter', dummy.value, true);
 			clear();
+		}
+
+		if (e.key === 'ArrowUp') {
+			e.preventDefault();
+			type(History.previous());
+			setPositionCursor();
+		}
+
+		if (e.key === 'ArrowDown') {
+			e.preventDefault();
+			type(History.next());
+			setPositionCursor();
 		}
 	});
 
@@ -69,12 +75,34 @@ function positionCursor() {
 	cursor.style.width = width;
 }
 
-function clear() {
-	dummy.value = '';
+function setPositionCursor(pos) {
+	// if (!pos && pos !== 0) {
+	// 	pos = dummy.value.length;
+	// }
+	// console.log(pos);
+	// dummy.setSelectionRange(pos, pos);
+}
+
+
+function type(text = '') {
+	if (text !== dummy.value) {
+		dummy.value = text;
+	}
 	input.innerHTML = '';
+	const letters = Array.from(text);
+	for(let i in letters) {
+		const s = document.createElement('span');
+		s.innerHTML = letters[i];
+		input.appendChild(s);
+	}
 	positionCursor();
 }
 
+function clear() {
+	type();
+}
+
 export default {
-	init
+	init,
+	clear
 };

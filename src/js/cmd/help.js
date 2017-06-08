@@ -6,7 +6,7 @@ export default {
 <ul class="help">
 	${Object.keys(d.helps).map((k) => `
 		<li>
-			<a href="${k}">${k}</a>: ${d.helps[k]}
+			<a href="/${k}">${k}</a>: ${d.helps[k]}
 		</li>
 	`).join('')}
 </ul>
