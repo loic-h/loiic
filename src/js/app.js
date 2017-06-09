@@ -13,7 +13,7 @@ function init() {
 	Log.init(container.querySelector('.log'));
 
 	events.on('app:doCmd', key => {
-		page(key);
+		page(encodeURIComponent(key));
 	});
 
 	window.addEventListener('popstate', (e) => {
@@ -25,8 +25,9 @@ function init() {
 	outCmd('home');
 
 	page('*', (ctx, next) => {
-		let cmd = ctx.params[0].replace(/^\//, '');
-		cmd = cmd.replace('/', ' ')
+		const key = decodeURIComponent(ctx.params[0]);
+		let cmd = key.replace(/^\//, '');
+		cmd = cmd.replace('/', ' ');
 		if (cmd === '') {
 			return;
 		}
