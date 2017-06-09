@@ -33,20 +33,29 @@ function setEvents() {
 	dummy.addEventListener('keydown', (e) => {
 		positionCursor();
 
-		if (e.key === 'Enter') {
-			events.emit('app:doCmd', getValue());
-			clear();
+		switch(e.key) {
+			case 'Enter':
+				events.emit('app:doCmd', getValue());
+				clear();
+				break;
+
+			case 'ArrowUp':
+				e.preventDefault();
+				type(History.previous());
+				break;
+
+			case 'ArrowDown':
+				e.preventDefault();
+				type(History.next());
+				break;
+
+			case 'Tab':
+				e.preventDefault();
+				events.emit('app:completion', getValue());
+				break;
 		}
 
-		if (e.key === 'ArrowUp') {
-			e.preventDefault();
-			type(History.previous());
-		}
 
-		if (e.key === 'ArrowDown') {
-			e.preventDefault();
-			type(History.next());
-		}
 	});
 
 	dummy.addEventListener('keyup', (e) => {
@@ -108,5 +117,6 @@ function getValue() {
 
 export default {
 	init,
-	clear
+	clear,
+	type
 };
