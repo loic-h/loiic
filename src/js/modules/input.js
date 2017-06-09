@@ -27,14 +27,14 @@ function setEvents() {
 	});
 
 	dummy.addEventListener('input', () => {
-		type(dummy.value);
+		type(getValue());
 	});
 
 	dummy.addEventListener('keydown', (e) => {
 		positionCursor();
 
 		if (e.key === 'Enter') {
-			events.emit('app:doCmd', dummy.value);
+			events.emit('app:doCmd', getValue());
 			clear();
 		}
 
@@ -51,6 +51,11 @@ function setEvents() {
 
 	dummy.addEventListener('keyup', (e) => {
 		positionCursor();
+	});
+
+	cursor.addEventListener('click', e => {
+		const key = getValue() === '' ? 'menu' : getValue();
+		events.emit('app:doCmd', key);
 	});
 }
 
@@ -80,7 +85,7 @@ function positionCursor() {
 
 
 function type(text = '') {
-	if (text !== dummy.value) {
+	if (text !== getValue()) {
 		dummy.value = text;
 	}
 	input.innerHTML = '';
@@ -95,6 +100,10 @@ function type(text = '') {
 
 function clear() {
 	type();
+}
+
+function getValue() {
+	return dummy.value;
 }
 
 export default {

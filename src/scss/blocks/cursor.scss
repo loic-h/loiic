@@ -8,6 +8,7 @@
 	left: 100%;
 	animation: blink 1s step-start 0s infinite;
 	z-index: 1;
+	cursor: pointer;
 }
 
 @keyframes blink {

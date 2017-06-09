@@ -1,6 +1,6 @@
 export default {
 	key: 'help',
-	alias: ['?'],
+	alias: ['?', 'menu'],
 	out(d) {
 		return `
 <ul class="help">
