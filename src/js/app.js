@@ -14,7 +14,9 @@ function init() {
 	Log.init(container.querySelector('.log'));
 
 	events.on('app:doCmd', key => {
-		page(encodeURIComponent(key));
+		let uri = key.split(' ').map(k => encodeURIComponent(k));
+		uri = uri.join('/');
+		page('/' + uri);
 	});
 
 	events.on('app:completion', key => {
@@ -35,7 +37,7 @@ function init() {
 	page('*', (ctx, next) => {
 		const key = decodeURIComponent(ctx.params[0]);
 		let cmd = key.replace(/^\//, '');
-		cmd = cmd.replace('/', ' ');
+		cmd = cmd.replace(/\//g, ' ');
 		if (cmd === '') {
 			return;
 		}
