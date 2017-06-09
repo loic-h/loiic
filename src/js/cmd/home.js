@@ -1,8 +1,9 @@
 export default {
 	key: 'home',
-	alias: ['/'],
+	alias: [],
 	help: 'return to home',
-	out() {
+	out(d) {
+		d.events.emit('log:clear');
 		return `
 <span class="bold">Loïc Hamet</span></br >
 Web development
