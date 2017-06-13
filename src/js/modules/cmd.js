@@ -5,27 +5,22 @@ import {keywords, helps, cmds} from '../cmds';
 function run(key) {
 	const keys = key.split(' ');
 	key = keys[0];
-	const args = keys.slice(1);
+	const params = keys.slice(1);
 	let cmd = keywords[key];
 	if (!cmd) {
 		events.emit('log:404', key);
 		return;
 	}
-	if (cmd.args && args.length < cmd.args.length) {
+	if (cmd.params && params.length < cmd.params.length) {
 		events.emit('log:error', `
 ${key}: Missing argument.<br />
-Use: ${key} ${cmd.args.map(a => `'${a.key}'`).join(' ')}
+Use: ${key} ${cmd.params.map(a => `'${a.key}'`).join(' ')}
 		`);
 		return;
 	}
 	const data = {
 		key,
-		projects,
-		helps,
-		events,
-		args,
-		cmds,
-		keywords
+		params
 	};
 	const out = cmd.out(data);
 	return out;

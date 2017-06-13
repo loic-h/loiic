@@ -1,3 +1,5 @@
+import {keywords} from '.';
+
 export default {
 	key: 'list',
 	alias: ['ls'],
@@ -6,7 +8,7 @@ export default {
 		return `
 <div class="list">
 	<ul>
-		${Object.keys(ctx.keywords).sort().map(k => `
+		${Object.keys(keywords).sort().map(k => `
 			<li>
 				<a href="${k}" class="cmd">${k}</a>
 			</li>

@@ -1,21 +1,22 @@
-import Projects from '../projects';
+import projects from '../projects';
+import events from '../events';
 
 export default {
 	key: 'go',
 	alias: ['see'],
 	help: 'see a project',
-	args: [
+	params: [
 		{
 			key: 'project',
 			values() {
-				return Object.keys(Projects);
+				return Object.keys(projects);
 			}
 		}
 	],
-	out(d) {
-		const project = d.projects[d.args[0]];
+	out(ctx) {
+		const project = projects[ctx.params[0]];
 		if (!project) {
-			d.events.emit('log:error', `${d.args[0]}: Project not found`);
+			events.emit('log:error', `${ctx.params[0]}: Project not found`);
 			return '';
 		}
 		window.open(project.url);

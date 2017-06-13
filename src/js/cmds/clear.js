@@ -1,7 +1,9 @@
+import events from '../events';
+
 export default {
 	key: 'clear',
 	alias: [],
-	out(d) {
-		d.events.emit('log:clear');
+	out() {
+		events.emit('log:clear');
 	}
 };
