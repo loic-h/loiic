@@ -24,6 +24,7 @@ function add(text, modifiers) {
 	line.className = classes.join(' ');
 	line.innerHTML = text;
 	container.appendChild(line);
+	window.scrollTo(0,document.body.scrollHeight);
 }
 
 function error(text) {
