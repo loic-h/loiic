@@ -1,6 +1,6 @@
 import events from '../events';
 import projects from '../projects';
-import {keywords, helps} from '../cmds';
+import {keywords, helps, cmds} from '../cmds';
 
 function run(key) {
 	const keys = key.split(' ');
@@ -14,7 +14,7 @@ function run(key) {
 	if (cmd.args && args.length < cmd.args.length) {
 		events.emit('log:error', `
 ${key}: Missing argument.<br />
-Use: ${key} ${cmd.args.map(a => `'${a}'`).join(' ')}
+Use: ${key} ${cmd.args.map(a => `'${a.key}'`).join(' ')}
 		`);
 		return;
 	}
@@ -23,7 +23,9 @@ Use: ${key} ${cmd.args.map(a => `'${a}'`).join(' ')}
 		projects,
 		helps,
 		events,
-		args
+		args,
+		cmds,
+		keywords
 	};
 	const out = cmd.out(data);
 	return out;

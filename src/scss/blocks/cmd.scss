@@ -1,0 +1,17 @@
+.cmd {
+	text-decoration: none;
+	font-style: italic;
+
+	&:before {
+		content: '_';
+		@include ease;
+		opacity: 0.2;
+	}
+
+	&:hover {
+
+		&:before {
+			opacity: 1;
+		}
+	}
+}

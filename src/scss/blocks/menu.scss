@@ -1,0 +1,17 @@
+.menu {
+
+	ul {
+		@include clearfix;
+
+		li {
+			display: block;
+			float: left;
+			margin-right: $base;
+			padding-right: $base;
+
+			&:not(:last-child) {
+				border-right: 1px solid $black;
+			}
+		}
+	}
+}

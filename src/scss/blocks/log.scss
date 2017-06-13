@@ -11,7 +11,11 @@
 		&--cmd {
 
 			span {
-				background: yellow;
+				font-style: italic;
+
+				&:before {
+					content: '_';
+				}
 			}
 		}
 	}

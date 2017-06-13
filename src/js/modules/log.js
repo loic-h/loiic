@@ -31,7 +31,10 @@ function error(text) {
 }
 
 function notFound(cmd) {
-	error(`${cmd}: command not found`);
+	error(`
+	${cmd}? Are you sure this is what you meant?<br />
+	Use <a href="/menu" class="cmd">menu</a> to see available commands.
+`);
 }
 
 function clear() {

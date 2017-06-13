@@ -2,6 +2,7 @@ export default {
 	key: 'projects',
 	alias: ['list', 'ls'],
 	help: 'list of projects',
+	menu: true,
 	out(d) {
 		return `
 <ul class="projects">

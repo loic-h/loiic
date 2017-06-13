@@ -15,7 +15,8 @@ export default cmds;
 
 export {
 	helps,
-	keywords
+	keywords,
+	cmds
 };
 
 
@@ -25,13 +26,21 @@ IMPORT ALL COMMANDS
 
 import home from './home';
 set(home);
+import about from './about';
+set(about);
+import projects from './projects';
+set(projects);
+import contact from './contact';
+set(contact);
 import hello from './hello';
 set(hello);
 import help from './help';
 set(help);
 import clear from './clear';
 set(clear);
-import list from './projects';
-set(list);
 import go from './go';
 set(go);
+import menu from './menu';
+set(menu);
+import list from './list';
+set(list);
