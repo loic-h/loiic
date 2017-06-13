@@ -36,8 +36,6 @@ import hello from './hello';
 set(hello);
 import help from './help';
 set(help);
-import clear from './clear';
-set(clear);
 import go from './go';
 set(go);
 import menu from './menu';

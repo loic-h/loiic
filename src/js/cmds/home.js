@@ -2,7 +2,7 @@ import events from '../events';
 
 export default {
 	key: 'home',
-	alias: [],
+	alias: ['clear'],
 	help: 'return to home',
 	out() {
 		events.emit('log:clear');
