@@ -10,7 +10,8 @@ export default {
 			key: 'project',
 			values() {
 				return Object.keys(projects);
-			}
+			},
+			mandatory: true
 		}
 	],
 	out(ctx) {

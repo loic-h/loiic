@@ -13,12 +13,24 @@ function run(key) {
 		events.emit('log:404', key);
 		return;
 	}
-	if (cmd.params && params.length < cmd.params.length) {
-		events.emit('log:error', `
-${key}: Missing argument.<br />
+	if (cmd.params) {
+		let message = null;
+		for (let i = 0; i < cmd.params.length; i++) {
+			const v = params[i];
+			const param = cmd.params[i];
+			if (!v && param.mandatory) {
+				message = 'Missing argument';
+			} else if (v && param.values().indexOf(v) < 0) {
+				message = 'Wrong argument';
+			}
+			if (message) {
+				events.emit('log:error', `
+${key}: ${message}.<br />
 Use: ${key} ${cmd.params.map(a => `'${a.key}'`).join(' ')}
-		`);
-		return;
+				`);
+				return;
+			}
+		}
 	}
 	const data = {
 		key,
@@ -37,10 +49,10 @@ function completion(key) {
 		return filterCompletion(Object.keys(keywords), key);
 	}
 	const cmd = keywords[keys[0]];
-	if (!cmd || !cmd.args || cmd.args.length <= 0) {
+	if (!cmd || !cmd.params || cmd.params.length <= 0) {
 		return;
 	}
-	const arg = cmd.args[keys.length - 2];
+	const arg = cmd.params[keys.length - 2];
 	const matches = filterCompletion(arg.values(), keys[keys.length - 1]);
 	return matches.map(m => {
 		return keys.slice(0, keys.length-1).concat(m).join(' ');
