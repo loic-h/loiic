@@ -2,6 +2,8 @@ import events from '../events';
 import projects from '../projects';
 import {keywords, helps, cmds} from '../cmds';
 
+events.on('cmd:run', run);
+
 function run(key) {
 	const keys = key.split(' ');
 	key = keys[0];
