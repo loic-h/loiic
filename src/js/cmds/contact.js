@@ -9,6 +9,6 @@ export default {
 	Send an email to the author:
 	<a href="mailto:loic.hamet@gmail.com">loic.hamet@gmail.com</a>
 </div>
-		`
+		`;
 	}
-}
+};

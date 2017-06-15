@@ -5,7 +5,9 @@ const helps = {};
 function set(d) {
 	cmds.push(d);
 	keywords[d.key] = d;
-	d.alias.forEach((a) => keywords[a] = d);
+	if (d.alias) {
+		d.alias.forEach((a) => keywords[a] = d);
+	}
 	if (d.help) {
 		helps[d.key] = d.help;
 	}
@@ -42,3 +44,7 @@ import menu from './menu';
 set(menu);
 import list from './list';
 set(list);
+import custom from './custom';
+set(custom);
+import reset from './reset';
+set(reset);

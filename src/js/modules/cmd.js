@@ -20,7 +20,7 @@ function run(key) {
 			const param = cmd.params[i];
 			if (!v && param.mandatory) {
 				message = 'Missing argument';
-			} else if (v && param.values().indexOf(v) < 0) {
+			} else if (v && param.values && param.values().indexOf(v) < 0) {
 				message = 'Wrong argument';
 			}
 			if (message) {

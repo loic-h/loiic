@@ -19,7 +19,7 @@ export default {
 <div class="help-item">
 	<a href="/${k}">${k}</a>: ${helps[k]}
 </div>
-			`
+			`;
 		} else {
 			content = `
 <ul>

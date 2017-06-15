@@ -73,7 +73,7 @@ function positionCursor() {
 	const index = dummy.selectionStart;
 	const spans = input.querySelectorAll('span');
 	let ref = spans[index];
-	if (index <= 0) {
+	if (index <= 0 && !ref) {
 		top = 0;
 		left = '100%';
 		width = defaultCursorWidth;
