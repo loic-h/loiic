@@ -1,6 +1,4 @@
-# ${project_name}
-
-boilerplate for project start
+# loiic
 
 How to build:
 - development: npm run watch
