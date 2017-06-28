@@ -1,17 +1,21 @@
 .cmd {
 	text-decoration: none;
-	font-style: italic;
+	text-decoration: underline;
+	// font-style: italic;
 
-	&:before {
-		content: '_';
-		@include ease;
-		opacity: 0.2;
-	}
+	// &:before {
+	// 	content: $cmdBefore;
+	// 	@include ease;
+	// 	opacity: 0.2;
+	// }
+	// @include ease;
+	// background: $black;
+	// color: $white;
 
 	&:hover {
-
-		&:before {
-			opacity: 1;
-		}
+		// background: rgba($yellow, 1);
+		// &:before {
+		// 	opacity: 1;
+		// }
 	}
 }

@@ -11,11 +11,13 @@
 		&--cmd {
 
 			span {
-				font-style: italic;
+				// font-style: italic;
+				// background: $black;
+				// color: $white;
+			}
 
-				&:before {
-					content: '_';
-				}
+			&:before {
+				content: $cmdBefore;
 			}
 		}
 	}

@@ -1,5 +1,4 @@
 .input {
-	position: relative;
 	z-index: 2;
 	min-height: 1em;
 	display: inline-block;
@@ -10,6 +9,10 @@
 		position: relative;
 		display: inline-block;
 		max-width: 100%;
+
+		&:before {
+			content: '>';
+		}
 	}
 
 	span {
