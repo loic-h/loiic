@@ -1,3 +1,5 @@
+import projects from '../projects';
+
 export default {
 	key: 'projects',
 	alias: ['list', 'ls'],
@@ -6,8 +8,8 @@ export default {
 	out(d) {
 		return `
 <ul class="projects">
-	${Object.keys(d.projects).map((k) => {
-		const item = d.projects[k];
+	${Object.keys(projects).map((k) => {
+		const item = projects[k];
 		return `
 			<li>
 				<a href="${item.url}">${item.title}</a>: ${item.text}
