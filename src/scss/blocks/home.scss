@@ -1,0 +1,15 @@
+.home {
+
+	&__name {
+		font-weight: bold;
+	}
+
+	&__activity {
+		font-style: italic;
+		display: block;
+
+		&:before {
+			content: '_';
+		}
+	}
+}

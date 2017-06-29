@@ -1,5 +1,5 @@
 html, body {
-	font-family: 'Maison Neue', Helvetica, Arial, sans-serif;
+	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
 	font-size: $fontSizeGlobal;
 	line-height: $lineHeightGlobal;
 	width: 100%;
@@ -38,4 +38,24 @@ p {
 #container {
 	padding: $base;
 	box-sizing: border-box;
+}
+
+.inputed {
+	// padding-bottom: $base/2;
+	// margin-bottom: $base/1.5;
+	// margin-top: $base*1.5;
+	// border-bottom: 1px solid $black;
+	padding-top: $base;
+
+	&:before {
+		// content: '';
+		// display: inline-block;
+		// height: 1em;
+		// width: 0.5em;
+		// border: $black solid 1px;
+		// margin-right: 0.2em;
+		// margin-bottom: -0.1em;
+		// content: '$';
+		vertical-align: top;
+	}
 }

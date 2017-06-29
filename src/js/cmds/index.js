@@ -1,6 +1,7 @@
 const cmds = [];
 const keywords = {};
 const helps = {};
+const shorts = {};
 
 function set(d) {
 	cmds.push(d);
@@ -11,6 +12,10 @@ function set(d) {
 	if (d.help) {
 		helps[d.key] = d.help;
 	}
+	if (d.shorts) {
+		Object.assign(shorts, d.shorts());
+		console.log(shorts);
+	}
 }
 
 export default cmds;
@@ -18,7 +23,8 @@ export default cmds;
 export {
 	helps,
 	keywords,
-	cmds
+	cmds,
+	shorts
 };
 
 
@@ -32,6 +38,8 @@ import about from './about';
 set(about);
 import projects from './projects';
 set(projects);
+import project from './project';
+set(project);
 import contact from './contact';
 set(contact);
 import hello from './hello';
@@ -48,3 +56,5 @@ import custom from './custom';
 set(custom);
 import reset from './reset';
 set(reset);
+
+// console.log(keywords);

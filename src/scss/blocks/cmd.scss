@@ -1,6 +1,6 @@
 .cmd {
 	text-decoration: none;
-	text-decoration: underline;
+	// text-decoration: underline;
 	// font-style: italic;
 
 	// &:before {
@@ -8,14 +8,12 @@
 	// 	@include ease;
 	// 	opacity: 0.2;
 	// }
-	// @include ease;
-	// background: $black;
-	// color: $white;
+	@include ease;
+	background: $yellow;
+	border-bottom: 1px solid $black;
 
 	&:hover {
-		// background: rgba($yellow, 1);
-		// &:before {
-		// 	opacity: 1;
-		// }
+		background: $black;
+		color: $yellow;
 	}
 }

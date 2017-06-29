@@ -25,7 +25,7 @@ export default {
 <ul>
 	${Object.keys(helps).map((k) => `
 		<li class="help-item">
-			<a href="/${k}">${k}</a>: ${helps[k]}
+			<a href="/${k}" class="cmd">${k}</a>: ${helps[k]}
 		</li>
 	`).join('')}
 </ul>

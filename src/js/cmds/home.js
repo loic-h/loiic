@@ -7,8 +7,10 @@ export default {
 	out() {
 		events.emit('log:clear');
 		return `
-<span class="bold">Loïc Hamet</span></br >
-Web development
+<div class="home">
+	<span class="home__name">Loïc Hamet</span>
+	<span class="home__activity">Web development<span>
+</div>
 		`;
 	}
 };

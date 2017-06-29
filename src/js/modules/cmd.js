@@ -1,6 +1,6 @@
 import events from '../events';
 import projects from '../projects';
-import {keywords, helps, cmds} from '../cmds';
+import {keywords, helps, cmds, shorts} from '../cmds';
 
 events.on('cmd:run', run);
 
@@ -8,6 +8,9 @@ function run(key) {
 	const keys = key.split(' ');
 	key = keys[0];
 	const params = keys.slice(1);
+	if (shorts[key]) {
+		return run(shorts[key]);
+	}
 	let cmd = keywords[key];
 	if (!cmd) {
 		events.emit('log:404', key);
@@ -45,8 +48,9 @@ function completion(key) {
 		return;
 	}
 	const keys = key.split(' ');
+	const words = Object.keys(keywords).concat(Object.keys(shorts));
 	if (keys.length <= 1) {
-		return filterCompletion(Object.keys(keywords), key);
+		return filterCompletion(words, key);
 	}
 	const cmd = keywords[keys[0]];
 	if (!cmd || !cmd.params || cmd.params.length <= 0) {

@@ -5,13 +5,14 @@ let dummy;
 let input;
 let container;
 let cursor;
+let ref;
 let defaultCursorWidth = 0;
 
 function init(cont) {
 	container = cont;
 
 	dummy = container.querySelector('.dummy');
-	input = container.querySelector('.input');
+	input = container.querySelector('.cmder__input');
 	cursor = container.querySelector('.cursor');
 	defaultCursorWidth = window.getComputedStyle(cursor).width;
 
@@ -72,7 +73,8 @@ function positionCursor() {
 	let top, left, width;
 	const index = dummy.selectionStart;
 	const spans = input.querySelectorAll('span');
-	let ref = spans[index];
+	ref = spans[index];
+	spans.forEach(el => el.classList.remove('active'));
 	if (index <= 0 && !ref) {
 		top = 0;
 		left = '100%';

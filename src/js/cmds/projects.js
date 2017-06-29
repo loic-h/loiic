@@ -10,9 +10,10 @@ export default {
 <ul class="projects">
 	${Object.keys(projects).map((k) => {
 		const item = projects[k];
+		console.log(item);
 		return `
-			<li>
-				<a href="${item.url}">${item.title}</a>: ${item.text}
+			<li class="projects__item">
+				<a href="${k}" class="cmd">${k}</a>
 			</li>
 		`;
 	}).join('')}

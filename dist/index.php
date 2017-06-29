@@ -14,9 +14,11 @@
 		<div id="layout">
 			<div class="log"></div>
 			<input class="dummy" type="text" value="" />
-			<div class="input-wrapper">
-				<span class="input" contenteditable="true"></span>
-				<span class="cursor"></span>
+			<div class="cmder">
+				<div class="cmder__container">
+					<span class="cmder__input" contenteditable="true"></span>
+					<span class="cursor"></span>
+				</div>
 			</div>
 		</div>
 	</div>

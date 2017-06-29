@@ -2,23 +2,20 @@
 	@include clearfix;
 
 	&-entry {
-		margin-bottom: $base/2;
-		float: left;
-		clear: left;
+		margin-bottom: $base/4;
 		max-width: 100%;
 		word-wrap: break-word;
 
 		&--cmd {
+			@extend .inputed;
 
 			span {
-				// font-style: italic;
-				// background: $black;
-				// color: $white;
+				text-decoration: line-through;
 			}
+		}
 
-			&:before {
-				content: $cmdBefore;
-			}
+		&__container {
+			display: inline-block;
 		}
 	}
 }

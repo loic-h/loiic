@@ -14,16 +14,20 @@ function init(cont) {
 
 function add(text, modifiers) {
 	entries.push(text);
-	const line = document.createElement('div');
 	let classes = [entryClass];
 	if (modifiers) {
 		if (Array.isArray(modifiers)) {
 			classes = classes.concat(modifiers.map((mod) => `${entryClass}--${mod}`));
 		}
 	}
-	line.className = classes.join(' ');
-	line.innerHTML = text;
-	container.appendChild(line);
+	const line = `
+<div class="${classes.join(' ')}">
+	<div class="${entryClass}__container">
+		${text}
+	</div>
+</div>
+`;
+	container.insertAdjacentHTML('beforeend', line);
 	window.scrollTo(0,document.body.scrollHeight);
 }
 
