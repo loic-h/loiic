@@ -1,13 +1,5 @@
 .cmd {
 	text-decoration: none;
-	// text-decoration: underline;
-	// font-style: italic;
-
-	// &:before {
-	// 	content: $cmdBefore;
-	// 	@include ease;
-	// 	opacity: 0.2;
-	// }
 	@include ease;
 	background: $yellow;
 	border-bottom: 1px solid $black;

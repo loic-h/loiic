@@ -19,16 +19,6 @@ html, body {
 
 p {
 	margin-bottom: $base;
-
-	a {
-		// text-decoration: none;
-		// color: rgba($black, 0.6);
-		// @include ease;
-
-		// &:hover {
-		// 	color: rgba($black, 1);
-		// }
-	}
 }
 
 .bold {
@@ -41,21 +31,5 @@ p {
 }
 
 .inputed {
-	// padding-bottom: $base/2;
-	// margin-bottom: $base/1.5;
-	// margin-top: $base*1.5;
-	// border-bottom: 1px solid $black;
 	padding-top: $base;
-
-	&:before {
-		// content: '';
-		// display: inline-block;
-		// height: 1em;
-		// width: 0.5em;
-		// border: $black solid 1px;
-		// margin-right: 0.2em;
-		// margin-bottom: -0.1em;
-		// content: '$';
-		vertical-align: top;
-	}
 }
