@@ -52,11 +52,10 @@ function setEvents() {
 
 			case 'Tab':
 				e.preventDefault();
-				events.emit('app:completion', getValue());
+				events.emit('complete', getValue());
 				break;
 		}
-
-
+		events.emit('keydown', e.key);
 	});
 
 	dummy.addEventListener('keyup', (e) => {
@@ -120,5 +119,6 @@ function getValue() {
 export default {
 	init,
 	clear,
-	type
+	type,
+	getValue
 };

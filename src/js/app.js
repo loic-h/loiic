@@ -6,6 +6,7 @@ import Cmd from './modules/cmd';
 import Input from './modules/input';
 import Log from './modules/log';
 import History from './modules/history';
+import './modules/complete';
 
 const container = document.getElementById('layout');
 
@@ -17,13 +18,6 @@ function init() {
 		let uri = key.split(' ').map(k => encodeURIComponent(k));
 		uri = uri.join('/');
 		page('/' + uri);
-	});
-
-	events.on('app:completion', key => {
-		const matches = Cmd.completion(key);
-		if (matches.length === 1) {
-			Input.type(matches[0]);
-		}
 	});
 
 	window.addEventListener('popstate', (e) => {
@@ -48,7 +42,7 @@ function init() {
 }
 
 function doCmd(key, store = false) {
-	Log.add(`<span>${key}</span>`, ['cmd']);
+	Log.cmd(key);
 	outCmd(key, store);
 }
 

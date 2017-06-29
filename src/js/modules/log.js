@@ -31,6 +31,10 @@ function add(text, modifiers) {
 	window.scrollTo(0,document.body.scrollHeight);
 }
 
+function cmd(key) {
+	add(`<span>${key}</span>`, ['cmd']);
+}
+
 function error(text) {
 	add(text, ['error']);
 }
@@ -50,6 +54,7 @@ function clear() {
 export default {
 	init,
 	add,
+	cmd,
 	error,
 	clear
 };
