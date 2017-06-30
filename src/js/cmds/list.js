@@ -7,9 +7,9 @@ export default {
 	out(ctx) {
 		return `
 <div class="list">
-	<ul>
+	<ul class="cmd-list">
 		${Object.keys(keywords).sort().map(k => `
-			<li>
+			<li class="cmd-list__item">
 				<a href="${k}" class="cmd">${k}</a>
 			</li>
 		`).join('')}

@@ -8,4 +8,19 @@
 		background: $black;
 		color: $yellow;
 	}
+
+	&-list {
+		// float: left;
+		// column-count: 3;
+
+		&__item {
+			display: inline-block;
+
+			&:not(:last-child):after {
+				content: '|';
+				display: inline-block;
+				margin: 0 $base/4;
+			}
+		}
+	}
 }
