@@ -5,7 +5,6 @@ const attributes = {
 		more(ctx) {
 			const cursor = document.querySelector('.cursor');
 			cursor.style.borderColor = ctx.value;
-			console.log(cursor);
 		}
 	},
 	background: {

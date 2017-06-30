@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {helps, keywords} from '.';
 
 export default {

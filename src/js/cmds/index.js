@@ -14,7 +14,6 @@ function set(d) {
 	}
 	if (d.shorts) {
 		Object.assign(shorts, d.shorts());
-		console.log(shorts);
 	}
 }
 
@@ -56,5 +55,3 @@ import custom from './custom';
 set(custom);
 import reset from './reset';
 set(reset);
-
-// console.log(keywords);

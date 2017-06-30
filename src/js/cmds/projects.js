@@ -10,7 +10,6 @@ export default {
 <ul class="projects">
 	${Object.keys(projects).map((k) => {
 		const item = projects[k];
-		console.log(item);
 		return `
 			<li class="projects__item">
 				<a href="${k}" class="cmd">${k}</a>
