@@ -36,7 +36,7 @@ function setEvents() {
 
 		switch(e.key) {
 			case 'Enter':
-				events.emit('app:doCmd', getValue());
+				events.emit('router:go', getValue());
 				clear();
 				break;
 
@@ -64,7 +64,7 @@ function setEvents() {
 
 	cursor.addEventListener('click', e => {
 		const key = getValue() === '' ? 'menu' : getValue();
-		events.emit('app:doCmd', key);
+		events.emit('router:go', key);
 	});
 }
 
