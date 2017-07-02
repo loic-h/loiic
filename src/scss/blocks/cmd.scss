@@ -13,13 +13,7 @@
 	&-list {
 
 		&__item {
-			display: inline-block;
-
-			&:not(:last-child):after {
-				content: '|';
-				display: inline-block;
-				margin: 0 $base/4;
-			}
+			margin-bottom: $base/4;
 		}
 	}
 }
