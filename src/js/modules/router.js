@@ -15,10 +15,10 @@ function init() {
 	window.addEventListener('popstate', (e) => {
 		Log.clear();
 		Input.clear();
-		go('home');
+		go('home', true);
 	});
 
-	go('home');
+	go('home', true);
 
 	page('*', (ctx, next) => {
 		const key = decodeURIComponent(ctx.params[0]);
@@ -36,7 +36,7 @@ function init() {
 	page();
 }
 
-function go(key) {
+function go(key, init) {
 	const out = Cmd.run(key);
 	if (!init) {
 		History.set(key);

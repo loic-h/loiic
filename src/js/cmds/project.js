@@ -1,4 +1,4 @@
-import projects from '../projects';
+import projects from '../data/projects';
 
 export default {
 	key: 'project',
@@ -21,15 +21,51 @@ export default {
 	out(d) {
 		const key = d.params[0];
 		const project = projects[key];
+		let content = '';
+		for (let k in project) {
+			if (project.hasOwnProperty(k)) {
+				const v = project[k];
+				content += `
+<li class="project-item project-item--${k}">
+	${getKey(k, v)}
+	${getValue(k, v, key)}
+</li>
+					`;
+			}
+		}
 		return `
 <div class="project">
-	<h2 class="project__title">${project.title}</h2>
-	<div class="project__date">${project.date}</div>
-	<div class="project__text">${project.text}</div>
-	<a class="project__link cmd" href="/visit/${key}">
-		visit ${key}
-	</a>
+	<ul>
+		${content}
+	</ul>
 </div>
 		`;
 	}
 };
+
+function getKey(k, v) {
+	const key = k;
+	return `<span class="project-item__key">${key}</span>`;
+}
+
+function getValue(k, v, name) {
+	let value = v;
+
+	if (k === 'url') {
+		return `<a href="/visit/${name}" class="cmd">visit ${name}</a>`;
+
+	} else if (k === 'with') {
+		value = `
+<ul class="project-item__with">
+	${v.map(item => `
+		<li>${item}</li>
+	`).join('')}
+</ul>
+		`;
+
+	} else if (typeof value === 'object') {
+		value = `<a href="${value.url}">${value.name}</a>`;
+	}
+
+	return `<span class="project-item__value">${value}</span>`;
+}

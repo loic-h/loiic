@@ -4,6 +4,7 @@ import {helps, keywords} from '.';
 export default {
 	key: 'help',
 	alias: ['?', 'man'],
+	menu: true,
 	params: [
 		{
 			key: 'command',

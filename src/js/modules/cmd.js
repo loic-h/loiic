@@ -1,5 +1,4 @@
 import events from '../events';
-import projects from '../projects';
 import {keywords, shorts} from '../cmds';
 
 events.on('cmd:run', run);

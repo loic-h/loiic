@@ -2,9 +2,10 @@ import events from '../events';
 import History from './history';
 import scrollto from '../utils/scrollto';
 
+let container;
+let cmder;
 let dummy;
 let input;
-let container;
 let cursor;
 let ref;
 let defaultCursorWidth = 0;
@@ -12,7 +13,7 @@ let active = true;
 
 function init(cont) {
 	container = cont;
-
+	cmder = container.querySelector('.cmder');
 	dummy = container.querySelector('.dummy');
 	input = container.querySelector('.cmder__input');
 	cursor = container.querySelector('.cursor');
@@ -66,7 +67,7 @@ function setEvents() {
 		positionCursor();
 	});
 
-	container.addEventListener('click', e => {
+	cmder.addEventListener('click', e => {
 		const key = getValue() === '' ? 'menu' : getValue();
 		events.emit('router:go', key);
 	});
