@@ -66,7 +66,7 @@ function setEvents() {
 		positionCursor();
 	});
 
-	cursor.addEventListener('click', e => {
+	container.addEventListener('click', e => {
 		const key = getValue() === '' ? 'menu' : getValue();
 		events.emit('router:go', key);
 	});

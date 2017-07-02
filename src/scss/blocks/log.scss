@@ -2,15 +2,17 @@
 	@include clearfix;
 
 	&-entry {
-		margin-bottom: $base/4;
+		@extend .block;
 		max-width: 100%;
 		word-wrap: break-word;
+		padding-bottom: $base;
 
 		&--cmd {
 			@extend .inputed;
+			padding-bottom: 0;
 
 			span {
-				text-decoration: line-through;
+				opacity: 0.5;
 			}
 		}
 

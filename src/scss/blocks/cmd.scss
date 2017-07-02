@@ -1,17 +1,16 @@
 .cmd {
 	text-decoration: none;
 	@include ease;
-	background: $yellow;
+	background: rgba($yellow, 0.5);
 	border-bottom: 1px solid $black;
 
 	&:hover {
-		background: $black;
-		color: $yellow;
+		// background: $black;
+		// color: $yellow;
+		background: rgba($yellow, 1);
 	}
 
 	&-list {
-		// float: left;
-		// column-count: 3;
 
 		&__item {
 			display: inline-block;
