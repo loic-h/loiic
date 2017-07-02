@@ -1,5 +1,6 @@
 import events from '../events';
 import Input from './input';
+import scrollto from '../utils/scrollto';
 
 const entries = [];
 const entryClass = 'log-entry';
@@ -29,7 +30,7 @@ function add(text, modifiers) {
 </div>
 `;
 	container.insertAdjacentHTML('beforeend', line);
-	window.scrollTo(0,document.body.scrollHeight);
+	scrollto('end');
 }
 
 function cmd(key, next, anim) {

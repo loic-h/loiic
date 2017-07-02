@@ -1,5 +1,6 @@
 import events from '../events';
 import History from './history';
+import scrollto from '../utils/scrollto';
 
 let dummy;
 let input;
@@ -7,7 +8,7 @@ let container;
 let cursor;
 let ref;
 let defaultCursorWidth = 0;
-let active;
+let active = true;
 
 function init(cont) {
 	container = cont;
@@ -109,6 +110,7 @@ function type(text = '') {
 		input.appendChild(s);
 	}
 	positionCursor();
+	scrollto('end');
 }
 
 function clear() {

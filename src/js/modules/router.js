@@ -18,7 +18,7 @@ function init() {
 		go('home');
 	});
 
-	go('home', true);
+	go('home');
 
 	page('*', (ctx, next) => {
 		const key = decodeURIComponent(ctx.params[0]);
@@ -29,7 +29,7 @@ function init() {
 		}
 		Log.cmd(cmd, () => {
 			Input.clear();
-			go(cmd, true);
+			go(cmd);
 		}, ctx.init);
 	});
 
