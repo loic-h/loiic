@@ -18,6 +18,7 @@ function init() {
 		go('home');
 	});
 
+	go('home', true);
 
 	page('*', (ctx, next) => {
 		const key = decodeURIComponent(ctx.params[0]);
@@ -26,18 +27,18 @@ function init() {
 		if (cmd === '') {
 			return;
 		}
-		Log.cmd(key);
-		go(cmd, !ctx.init);
+		Log.cmd(cmd, () => {
+			Input.clear();
+			go(cmd, true);
+		}, ctx.init);
 	});
 
 	page();
-
-	go('home');
 }
 
-function go(key, store = false) {
-	const out = Cmd.run(key);
-	if (store) {
+function go(key, init=false) {
+	const out = Cmd.run(key, !init);
+	if (!init) {
 		History.set(key);
 	}
 	if (out) {

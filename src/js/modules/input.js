@@ -7,6 +7,7 @@ let container;
 let cursor;
 let ref;
 let defaultCursorWidth = 0;
+let active;
 
 function init(cont) {
 	container = cont;
@@ -28,7 +29,9 @@ function setEvents() {
 	});
 
 	dummy.addEventListener('input', () => {
-		type(getValue());
+		 if (active) {
+			type(getValue());
+		}
 	});
 
 	dummy.addEventListener('keydown', (e) => {
@@ -116,9 +119,34 @@ function getValue() {
 	return dummy.value;
 }
 
+function fill(key, next, anim) {
+	activate(false);
+	const goal = key;
+	let current = anim ? goal : getValue();
+	fillCb(current, goal, next);
+}
+
+function fillCb(current, goal, next) {
+	if (current.length < goal.length) {
+		current = goal.slice(0, current.length + 1);
+		type(current);
+		setTimeout(() => fillCb(current, goal, next), 40);
+	} else {
+		activate();
+		if (next) {
+			next();
+		}
+	}
+}
+
+function activate(foo=true) {
+	active = foo;
+}
+
 export default {
 	init,
 	clear,
 	type,
-	getValue
+	getValue,
+	fill
 };

@@ -16,6 +16,14 @@
 		z-index: 2;
 	}
 
+	&__anim {
+
+		span {
+			white-space: pre-wrap;
+			opacity: 0;
+		}
+	}
+
 	span {
 		white-space: pre-wrap;
 

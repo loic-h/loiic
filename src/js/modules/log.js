@@ -1,4 +1,5 @@
 import events from '../events';
+import Input from './input';
 
 const entries = [];
 const entryClass = 'log-entry';
@@ -31,8 +32,13 @@ function add(text, modifiers) {
 	window.scrollTo(0,document.body.scrollHeight);
 }
 
-function cmd(key) {
-	add(`<span>${key}</span>`, ['cmd']);
+function cmd(key, next, anim) {
+	Input.fill(key, () => {
+		add(`<span>${key}</span>`, ['cmd']);
+		if (next) {
+			next();
+		}
+	}, anim);
 }
 
 function error(text) {
