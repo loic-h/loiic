@@ -10,6 +10,7 @@ export default {
 				els.forEach(el => el.setAttribute('style', ''));
 			}
 		}
+		localStorage.setItem('css', JSON.stringify({}));
 		return `
 <div class="reset">
 	Reseting the styles
