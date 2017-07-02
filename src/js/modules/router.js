@@ -36,8 +36,8 @@ function init() {
 	page();
 }
 
-function go(key, init=false) {
-	const out = Cmd.run(key, !init);
+function go(key) {
+	const out = Cmd.run(key);
 	if (!init) {
 		History.set(key);
 	}
