@@ -1,0 +1,13 @@
+.contact {
+
+	&-list {
+
+		&__item {
+			margin-bottom: $base/4;
+
+			a {
+				@extend .cmd;
+			}
+		}
+	}
+}
