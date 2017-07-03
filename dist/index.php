@@ -13,7 +13,7 @@
 		<div class="loader"></div>
 		<div id="layout">
 			<div class="log"></div>
-			<input class="dummy" type="text" value="" />
+			<input class="dummy" type="text" value="" autocapitalize="none"/>
 			<div class="cmder">
 				<div class="cmder__container">
 					<span class="cmder__input" contenteditable="true"></span>

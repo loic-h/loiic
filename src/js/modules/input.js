@@ -10,6 +10,7 @@ let cursor;
 let ref;
 let defaultCursorWidth = 0;
 let active = true;
+let touched = false;
 
 function init(cont) {
 	container = cont;
@@ -26,6 +27,9 @@ function init(cont) {
 
 function setEvents() {
 	dummy.addEventListener('blur', () => {
+		if (touched) {
+			return;
+		}
 		setTimeout(() => dummy.focus(), 10);
 		positionCursor();
 	});
@@ -68,8 +72,16 @@ function setEvents() {
 	});
 
 	cmder.addEventListener('click', e => {
+		if (touched) {
+			dummy.focus();
+			return;
+		}
 		const key = getValue() === '' ? 'menu' : getValue();
 		events.emit('router:go', key);
+	});
+
+	container.addEventListener('touchstart', e => {
+		touched = true;
 	});
 }
 
