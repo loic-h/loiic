@@ -28,6 +28,10 @@ p {
 #container {
 	padding: $base;
 	box-sizing: border-box;
+
+	@include media('<600px') {
+		padding: $base $base/2;
+	}
 }
 
 .inputed {
