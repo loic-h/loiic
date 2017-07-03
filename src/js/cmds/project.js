@@ -11,7 +11,7 @@ export default {
 	help: 'show a project',
 	params: [
 		{
-			key: 'project',
+			key: 'project_key',
 			values() {
 				return Object.keys(projects);
 			},
