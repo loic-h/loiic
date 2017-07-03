@@ -15,9 +15,15 @@
 			<div class="log"></div>
 			<input class="dummy" type="text" value="" autocapitalize="none"/>
 			<div class="cmder">
-				<div class="cmder__container">
-					<span class="cmder__input" contenteditable="true"></span>
-					<span class="cursor"></span>
+				<div class="cmder-input">
+					<div class="cmder-input__container">
+						<span class="cmder-input__input" contenteditable="true"></span>
+						<span class="cursor"></span>
+					</div>
+				</div>
+				<div class="cmder__remote">
+					<a href="/menu" class="cmder__button cmder__button--menu"><span></span></a>
+					<a href="/help" class="cmder__button cmder__button--help">?</a>
 				</div>
 			</div>
 		</div>

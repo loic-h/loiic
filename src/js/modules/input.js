@@ -1,6 +1,7 @@
 import events from '../events';
 import History from './history';
 import scrollto from '../utils/scrollto';
+import target from '../utils/target';
 
 let container;
 let cmder;
@@ -16,7 +17,7 @@ function init(cont) {
 	container = cont;
 	cmder = container.querySelector('.cmder');
 	dummy = container.querySelector('.dummy');
-	input = container.querySelector('.cmder__input');
+	input = container.querySelector('.cmder-input__input');
 	cursor = container.querySelector('.cursor');
 	defaultCursorWidth = window.getComputedStyle(cursor).width;
 
@@ -72,6 +73,11 @@ function setEvents() {
 	});
 
 	cmder.addEventListener('click', e => {
+		const menu = target(e.target, '.cmder__button');
+		if (menu) {
+			return;
+		}
+
 		if (touched) {
 			dummy.focus();
 			return;

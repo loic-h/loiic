@@ -1,6 +1,7 @@
 import events from '../events';
 import Input from './input';
 import scrollto from '../utils/scrollto';
+import move from 'move-js';
 
 const entries = [];
 const entryClass = 'log-entry';
