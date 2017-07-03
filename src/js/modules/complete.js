@@ -14,9 +14,9 @@ function complete(key) {
 	} else {
 		Log.cmd(Input.getValue());
 		Log.add(`
-<ul class="suggests">
+<ul class="cmd-list">
 	${matches.map(m => `
-		<li><a href="/${m}" class="cmd">${m}</a></li>
+		<li class="cmd-list__item"><a href="/${m}" class="cmd">${m}</a></li>
 	`).join('')}
 </ul>
 		`);
