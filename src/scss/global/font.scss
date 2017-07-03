@@ -1,17 +1,33 @@
 @font-face {
-	font-family: 'Maison Neue';
+	font-family: 'PT Sans';
 	src:
-		url(../fonts/maisonneue-book.woff),
-		url(../fonts/maisonneue-book.woff2);
+		url(../fonts/PTSans-book.woff);
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Maison Neue';
+	font-family: 'PT Sans';
 	src:
-		url(../fonts/maisonneue-bold.woff),
-		url(../fonts/maisonneue-bold.woff2);
+		url(../fonts/PTSans-bold.woff);
 	font-weight: bold;
 	font-style: normal;
 }
+
+@font-face {
+	font-family: 'PT Sans';
+	src:
+		url(../fonts/PTSans-italic.woff);
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'PT Sans';
+	src:
+		url(../fonts/PTSans-bold-italic.woff);
+	font-weight: bold;
+	font-style: italic;
+}
+
+
