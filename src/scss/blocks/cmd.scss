@@ -11,9 +11,27 @@
 	}
 
 	&-list {
+		column-count: 1;
+		column-gap: $base;
 
 		&__item {
 			margin-bottom: $base/4;
+
+			a {
+				display: inline-block;
+			}
+		}
+
+		@include media('>300px') {
+			column-count: 2;
+		}
+
+		@include media('>500px') {
+			column-count: 3;
+		}
+
+		@include media('>700px') {
+			column-count: 4;
 		}
 	}
 }
