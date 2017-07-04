@@ -12,6 +12,7 @@ function set(d) {
 	if (d.help) {
 		const help = typeof d.help === 'function' ? d.help() : d.help;
 		helps[d.key] = help;
+		d.alias.forEach(a => helps[a] = help);
 	}
 	if (d.shorts) {
 		Object.assign(shorts, d.shorts());

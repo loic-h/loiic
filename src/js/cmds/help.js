@@ -20,7 +20,7 @@ export default {
 			const cmd = keywords[k];
 			const attributes = cmd.params
 				? cmd.params.map(a => `<span>${a.key}</span>`).join(' ')
-				: ''
+				: '';
 ;			content = `
 <div class="help-item">
 	<a href="/${k}" class="help-item__cmd cmd">${k}</a>

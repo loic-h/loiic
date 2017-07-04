@@ -4,7 +4,7 @@ import events from '../events';
 export default {
 	key: 'go',
 	alias: ['see', 'visit'],
-	help: 'see a project',
+	help: 'visit a project',
 	params: [
 		{
 			key: 'project',
