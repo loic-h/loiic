@@ -1,6 +1,8 @@
 .layout {
 	padding: $base;
 	box-sizing: border-box;
+	background: $yellow;
+	color: $black;
 
 	@include media('<600px') {
 		padding: $base $base/2;

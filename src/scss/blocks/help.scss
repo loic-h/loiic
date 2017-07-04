@@ -3,4 +3,26 @@
 	&__text {
 		margin-bottom: $base;
 	}
+
+	&-style {
+
+		p {
+			margin-bottom: $base/2;
+		}
+
+		&__list {
+			margin-bottom: $base/2;
+		}
+
+		&-item {
+
+			&__cmd {
+				font-weight: bold;
+
+				&:after {
+					content: ':';
+				}
+			}
+		}
+	}
 }

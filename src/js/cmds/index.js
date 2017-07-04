@@ -10,7 +10,8 @@ function set(d) {
 		d.alias.forEach((a) => keywords[a] = d);
 	}
 	if (d.help) {
-		helps[d.key] = d.help;
+		const help = typeof d.help === 'function' ? d.help() : d.help;
+		helps[d.key] = help;
 	}
 	if (d.shorts) {
 		Object.assign(shorts, d.shorts());
@@ -51,7 +52,5 @@ import menu from './menu';
 set(menu);
 import list from './list';
 set(list);
-import custom from './custom';
-set(custom);
-import reset from './reset';
-set(reset);
+import style from './style';
+set(style);

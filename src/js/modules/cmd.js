@@ -8,7 +8,8 @@ function run(key) {
 	key = keys[0];
 	const params = keys.slice(1);
 	if (shorts[key]) {
-		return run(shorts[key]);
+		const c = shorts[key];
+		return run(typeof c === 'function' ? c(params) : c);
 	}
 	let cmd = keywords[key];
 	if (!cmd) {
@@ -20,6 +21,7 @@ function run(key) {
 		for (let i = 0; i < cmd.params.length; i++) {
 			const v = params[i];
 			const param = cmd.params[i];
+			const mandatory = typeof param.mandatory === 'function' ? param.mandatory(params) : param.mandatory;
 			if (!v && param.mandatory) {
 				message = 'Missing argument';
 			} else if (v && param.values && param.values().indexOf(v) < 0) {
