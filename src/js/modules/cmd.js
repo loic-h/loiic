@@ -30,7 +30,7 @@ function run(key) {
 			if (message) {
 				events.emit('log:error', `
 ${key}: ${message}.<br />
-<div class="use">Use: <span>${key} ${cmd.params.map(a => `<span>${a.key}</span>`).join(' ')}</span></div>
+Type <a href="/help/${key}" class="cmd">help ${key}</a> to see how to use this command.
 				`);
 				return;
 			}
