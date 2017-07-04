@@ -50,7 +50,7 @@ function error(text) {
 function notFound(cmd) {
 	error(`
 	${cmd}? Are you sure this is what you meant?<br />
-	Use <a href="/menu" class="cmd">menu</a> to see available commands.
+	Type <a href="/menu" class="cmd">menu</a> or <a href="/help" class="cmd">help</a> to see available commands.
 `);
 }
 
