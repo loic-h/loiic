@@ -23,8 +23,7 @@ export default {
 	},
 	command: {
 		sets: {
-			'.cmd': 'background',
-			'.cmd': 'border-color',
+			'.cmd': ['background', 'border-color'],
 			'.cursor': 'background'
 		},
 		desc: 'set the commands\' background color'

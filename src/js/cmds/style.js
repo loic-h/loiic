@@ -88,18 +88,17 @@ function init() {
 	styles = localStorage.getItem('styles')
 		? JSON.parse(localStorage.getItem('styles'))
 		: {};
-	Object.keys(styles).forEach(k => {
-		const item = styles[k];
-		Object.keys(item).forEach(attribute => {
-			addStyle(item.selector, attribute, item[attribute]);
-		});
-	});
+
 	updateStyle();
 }
 
 function addStyle(selector='.layout', attribute, value, save=true) {
 	const item = styles[selector] || {};
-	item[attribute] = value;
+	if (Array.isArray(attribute)) {
+		attribute.forEach(a => item[a] = value);
+	} else {
+		item[attribute] = value;
+	}
 	styles[selector] = item;
 }
 
