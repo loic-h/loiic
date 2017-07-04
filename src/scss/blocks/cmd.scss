@@ -1,11 +1,12 @@
 .cmd {
 	text-decoration: none;
+	background: $yellow;
+	border-bottom: 1px solid $yellow;
+	opacity: 1;
 	@include ease;
-	background: rgba($yellow, 0.5);
-	border-bottom: 1px solid $black;
 
 	&:hover {
-		background: rgba($yellow, 1);
+		border-color: $black;
 	}
 
 	&-list {

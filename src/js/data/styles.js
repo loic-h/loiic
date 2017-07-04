@@ -9,7 +9,8 @@ export default {
 		sets: {
 			'.layout': 'color',
 			'.cursor': 'border-bottom-color',
-			'.cmder__button--menu span, .cmder__button--menu:before, .cmder__button--menu:after': 'background'
+			'.cmder__button--menu span, .cmder__button--menu:before, .cmder__button--menu:after': 'background',
+			'.cmd:hover': 'border-color'
 		},
 		desc: 'set the main font color'
 	},
@@ -23,6 +24,7 @@ export default {
 	command: {
 		sets: {
 			'.cmd': 'background',
+			'.cmd': 'border-color',
 			'.cursor': 'background'
 		},
 		desc: 'set the commands\' background color'
