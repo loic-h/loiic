@@ -18,11 +18,14 @@ export default {
 		if (ctx.params[0]) {
 			const k = ctx.params[0];
 			const cmd = keywords[k];
-			content = `
+			const attributes = cmd.params
+				? cmd.params.map(a => `<span>${a.key}</span>`).join(' ')
+				: ''
+;			content = `
 <div class="help-item">
 	<a href="/${k}" class="help-item__cmd cmd">${k}</a>
 	<div class="help-item__text">${helps[k]}</div>
-	<div class="use">Use: <span>${k} ${cmd.params.map(a => `<span>${a.key}</span>`).join(' ')}</span></div>
+	<div class="use">Use: <span>${k} ${attributes}</span></div>
 </div>
 			`;
 		} else {

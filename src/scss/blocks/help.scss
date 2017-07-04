@@ -4,15 +4,23 @@
 		margin-bottom: $base;
 	}
 
+	p, ul {
+		margin-bottom: $base/2;
+	}
+
+	&-item {
+
+		&__cmd {
+			display: inline-block;
+			margin-bottom: $base/2;
+		}
+
+		&__text {
+			margin-bottom: $base/2;
+		}
+	}
+
 	&-style {
-
-		p {
-			margin-bottom: $base/2;
-		}
-
-		&__list {
-			margin-bottom: $base/2;
-		}
 
 		&-item {
 

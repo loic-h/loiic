@@ -34,6 +34,9 @@ export default {
 	<p>
 		Colors must be in CSS format eg. 'red', '#ff0000', or 'rgb(255,0,0)'
 	</p>
+	<p>
+		Example: <a href="/style/background/black" class="cmd">style background black</a>
+	</p>
 </div>
 		`;
 	},
