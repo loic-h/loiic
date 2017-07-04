@@ -29,7 +29,7 @@ function init() {
 		}
 		Log.cmd(cmd, () => {
 			Input.clear();
-			go(cmd);
+			go(cmd, ctx.init);
 		}, ctx.init);
 	});
 
