@@ -15,5 +15,10 @@
 				opacity: 0.5;
 			}
 		}
+
+		&:not(.log-entry--cmd) {
+			position: relative;
+			z-index: 2;
+		}
 	}
 }

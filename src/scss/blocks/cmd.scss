@@ -1,13 +1,13 @@
 .cmd {
 	display: inline-block;
 	text-decoration: none;
-	background: $yellow;
-	border-bottom: 1px solid $yellow;
+	background: $highlight;
+	border-bottom: 1px solid $highlight;
 	opacity: 1;
 	@include ease;
 
 	&:hover {
-		border-color: $black;
+		border-color: $fontColor;
 	}
 
 	&-list {
