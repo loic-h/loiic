@@ -17,21 +17,20 @@ function run(key) {
 		return;
 	}
 	if (cmd.params) {
-		let message = null;
+		let typeError;
 		for (let i = 0; i < cmd.params.length; i++) {
 			const v = params[i];
 			const param = cmd.params[i];
-			const mandatory = typeof param.mandatory === 'function' ? param.mandatory(params) : param.mandatory;
-			if (!v && param.mandatory) {
-				message = 'Missing argument';
+			const mandatory = typeof param.mandatory === 'function'
+				? param.mandatory(params)
+				: param.mandatory;
+			if (!v && mandatory) {
+				typeError = 'missing';
 			} else if (v && param.values && param.values().indexOf(v) < 0) {
-				message = 'Wrong argument';
+				typeError = 'wrong';
 			}
-			if (message) {
-				events.emit('log:error', `
-${key}: ${message}.<br />
-Type <a href="/help/${key}" class="cmd">help ${key}</a> to see how to use this command.
-				`);
+			if (typeError) {
+				events.emit('log:error:argument', key, typeError);
 				return;
 			}
 		}

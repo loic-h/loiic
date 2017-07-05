@@ -13,6 +13,7 @@ function init(cont) {
 	events.on('log:clear', clear);
 	events.on('log:error', error);
 	events.on('log:404', notFound);
+	events.on('log:error:argument', errorArgument);
 }
 
 function add(text, modifiers) {
@@ -49,9 +50,20 @@ function error(text) {
 
 function notFound(cmd) {
 	error(`
-	${cmd}? Are you sure this is what you meant?<br />
-	Type <a href="/menu" class="cmd">menu</a> or <a href="/help" class="cmd">help</a> to see available commands.
-`);
+${cmd}? Are you sure this is what you meant?<br />
+Type <a href="/menu" class="cmd">menu</a> or <a href="/help" class="cmd">help</a> to see available commands.
+	`);
+}
+
+function errorArgument(key, type) {
+	let message = 'Missing argument';
+	if (type === 'wrong') {
+		message = 'Wrong argument';
+	}
+	error(`
+${key}: ${message}.<br />
+Type <a href="/help/${key}" class="cmd">help ${key}</a> to see how to use this command.
+	`)
 }
 
 function clear() {
