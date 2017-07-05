@@ -15,7 +15,7 @@ export default {
 	<ul>
 		${items.map(item => `
 			<li>
-				<a href="${item.key}" class="cmd">${item.key}</a>
+				<a href="/${item.key}" class="cmd">${item.key}</a>
 			</li>
 		`).join('')}
 	</ul>

@@ -1,7 +1,5 @@
 import page from 'page';
 import events from '../events';
-import Log from './log';
-import Input from './input';
 import Cmd from './cmd';
 import History from './history';
 
@@ -12,38 +10,42 @@ function init() {
 		page('/' + uri);
 	});
 
-	window.addEventListener('popstate', (e) => {
-		Log.clear();
-		Input.clear();
-		go('home', true);
+	events.on('open', (url, notab) => {
+		setTimeout(() => {
+			if(notab) {
+				window.location = url;
+			} else {
+				window.open(url);
+			}
+		}, 1000);
 	});
 
-	go('home', true);
+	window.addEventListener('popstate', (e) => {
+		Cmd.clear();
+		go('home', false, false, false);
+	});
+
+	go('home', false, false, false);
 
 	page('*', (ctx, next) => {
-		const key = decodeURIComponent(ctx.params[0]);
-		let cmd = key.replace(/^\//, '');
-		cmd = cmd.replace(/\//g, ' ');
-		if (cmd === '') {
+		let key = decodeURIComponent(ctx.params[0]);
+		key = key.replace(/^\//, '');
+		key = key.replace(/\//g, ' ');
+		if (key === '') {
 			return;
 		}
-		Log.cmd(cmd, () => {
-			Input.clear();
-			go(cmd, ctx.init);
-		}, ctx.init);
+
+		go(key, true, !ctx.init, !ctx.init);
 	});
 
 	page();
 }
 
-function go(key, init) {
-	const out = Cmd.run(key);
-	if (!init) {
+function go(key, showCmd=true, save=true, animCmd=true) {
+	if (save) {
 		History.set(key);
 	}
-	if (out) {
-		Log.add(out);
-	}
+	Cmd.run(key, showCmd, animCmd);
 }
 
 export default {

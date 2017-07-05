@@ -1,4 +1,6 @@
 import contacts from '../data/contacts';
+import events from '../events';
+import Log from '../modules/log';
 
 export default {
 	key: 'contact',
@@ -23,14 +25,9 @@ export default {
 		if (key) {
 			const url = contacts[key];
 			if (!url) {
-				events.emit('log:error', `${key}: Contact not found`);
-				return '';
+				return Log.error(`${key}: Contact not found`);
 			}
-			if(key === 'email') {
-				window.location = url;
-			} else {
-				window.open(url);
-			}
+			events.emit('open', url, key === 'email');
 			return `Opening ${key}...`;
 		}
 		return `

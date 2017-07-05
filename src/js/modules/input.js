@@ -31,13 +31,14 @@ function setEvents() {
 		if (touched) {
 			return;
 		}
-		setTimeout(() => dummy.focus(), 10);
+		setTimeout(() => dummy.focus(), 100);
 		positionCursor();
 	});
 
 	dummy.addEventListener('input', () => {
 		 if (active) {
 			type(getValue());
+			scrollto();
 		}
 	});
 
@@ -143,7 +144,7 @@ function getValue() {
 function fill(key, next, anim) {
 	activate(false);
 	const goal = key;
-	let current = anim ? goal : getValue();
+	let current = anim ? getValue() : goal;
 	fillCb(current, goal, next);
 }
 

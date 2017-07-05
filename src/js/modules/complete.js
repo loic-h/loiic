@@ -12,8 +12,7 @@ function complete(key) {
 	} else if (matches.length === 1) {
 		Input.type(matches[0]);
 	} else {
-		Log.cmd(Input.getValue());
-		Log.add(`
+		Log.block(Input.getValue(), `
 <ul class="cmd-list">
 	${matches.map(m => `
 		<li class="cmd-list__item"><a href="/${m}" class="cmd">${m}</a></li>

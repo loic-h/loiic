@@ -3,53 +3,59 @@ import Input from './input';
 import scrollto from '../utils/scrollto';
 import move from 'move-js';
 
-const entries = [];
 const entryClass = 'log-entry';
+const blockClass = 'log-block';
 let container;
 
 function init(cont) {
 	container = cont;
-
-	events.on('log:clear', clear);
-	events.on('log:error', error);
-	events.on('log:404', notFound);
-	events.on('log:error:argument', errorArgument);
 }
 
-function add(text, modifiers) {
-	entries.push(text);
+function add(content) {
+	container.insertAdjacentHTML('beforeend', content);
+	scrollto('end');
+}
+
+function entry(text, modifiers) {
 	let classes = [entryClass];
 	if (modifiers) {
 		if (Array.isArray(modifiers)) {
 			classes = classes.concat(modifiers.map((mod) => `${entryClass}--${mod}`));
 		}
 	}
-	const line = `
+	return `
 <div class="${classes.join(' ')}">
 	<div class="${entryClass}__container">
 		${text}
 	</div>
 </div>
 `;
-	container.insertAdjacentHTML('beforeend', line);
-	scrollto('end');
 }
 
-function cmd(key, next, anim) {
-	Input.fill(key, () => {
-		add(`<span>${key}</span>`, ['cmd']);
-		if (next) {
-			next();
-		}
-	}, anim);
+function cmd(key, out, showCmd=true, anim=true) {
+	return entry(`<span>${key}</span>`, ['cmd']);
+}
+
+function block(key, content, showCmd=true) {
+	key = key && showCmd ? cmd(key) : '';
+	content = entry(content);
+	add(`
+<div class="log-block">
+	${key + content}
+</div>
+	`);
 }
 
 function error(text) {
-	add(text, ['error']);
+	return `
+<div class="log-error">
+	${text}
+</div>
+	`;;
 }
 
 function notFound(cmd) {
-	error(`
+	return error(`
 ${cmd}? Are you sure this is what you meant?<br />
 Type <a href="/menu" class="cmd">menu</a> or <a href="/help" class="cmd">help</a> to see available commands.
 	`);
@@ -60,21 +66,22 @@ function errorArgument(key, type) {
 	if (type === 'wrong') {
 		message = 'Wrong argument';
 	}
-	error(`
+	return error(`
 ${key}: ${message}.<br />
 Type <a href="/help/${key}" class="cmd">help ${key}</a> to see how to use this command.
-	`)
+	`);
 }
 
 function clear() {
-	entries.splice(0, entries.length);
 	container.innerHTML = '';
 }
 
 export default {
 	init,
-	add,
+	block,
 	cmd,
 	error,
+	errorArgument,
+	notFound,
 	clear
 };

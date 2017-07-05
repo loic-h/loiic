@@ -1,5 +1,6 @@
 import projects from '../data/projects';
 import events from '../events';
+import Log from '../modules/log';
 
 export default {
 	key: 'go',
@@ -17,10 +18,9 @@ export default {
 	out(ctx) {
 		const project = projects[ctx.params[0]];
 		if (!project) {
-			events.emit('log:error', `${ctx.params[0]}: Project not found`);
-			return '';
+			return Log.error(`${ctx.params[0]}: Project not found`, key);
 		}
-		window.open(project.url);
+		events.emit('open', project.url);
 		return `
 Opening ${project.title}...
 		`;
