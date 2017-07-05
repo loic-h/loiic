@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import {helps, keywords} from '.';
+import {helps, allwords, mainwords} from '.';
 
 export default {
 	key: 'help',
@@ -9,7 +9,7 @@ export default {
 		{
 			key: 'command',
 			values() {
-				return Object.keys(keywords);
+				return Object.keys(allwords);
 			}
 		}
 	],
@@ -17,7 +17,7 @@ export default {
 		let content = '';
 		if (ctx.params[0]) {
 			const k = ctx.params[0];
-			const cmd = keywords[k];
+			const cmd = allwords[k];
 			const attributes = cmd.params
 				? cmd.params.map(a => `<span>${a.key}</span>`).join(' ')
 				: '';
@@ -34,7 +34,7 @@ export default {
 	This website works like a terminal. Type a command, or click on it, to execute it. Below are a list of the main commands. To get more details on it, use <span class="bold">help command_name</span>.
 </div>
 <ul class="cmd-list">
-	${Object.keys(helps).sort().map((k) => `
+	${Object.keys(mainwords).sort().map((k) => `
 		<li class="cmd-list__item">
 			<a href="/${k}" class="cmd">${k}</a>
 		</li>

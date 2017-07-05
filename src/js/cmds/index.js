@@ -1,13 +1,15 @@
 const cmds = [];
-const keywords = {};
+const mainwords = {};
+const allwords = {};
 const helps = {};
 const shorts = {};
 
 function set(d) {
 	cmds.push(d);
-	keywords[d.key] = d;
+	mainwords[d.key] = d;
+	allwords[d.key] = d;
 	if (d.alias) {
-		d.alias.forEach((a) => keywords[a] = d);
+		d.alias.forEach((a) => allwords[a] = d);
 	}
 	if (d.help) {
 		const help = typeof d.help === 'function' ? d.help() : d.help;
@@ -15,7 +17,11 @@ function set(d) {
 		d.alias.forEach(a => helps[a] = help);
 	}
 	if (d.shorts) {
-		Object.assign(shorts, d.shorts());
+		const setShorts = d.shorts();
+		Object.keys(setShorts).forEach(s => {
+			shorts[s] = setShorts[s];
+			allwords[s] = d;
+		});
 	}
 }
 
@@ -23,7 +29,8 @@ export default cmds;
 
 export {
 	helps,
-	keywords,
+	mainwords,
+	allwords,
 	cmds,
 	shorts
 };

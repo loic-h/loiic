@@ -1,5 +1,5 @@
 import events from '../events';
-import {keywords, shorts} from '../cmds';
+import {allwords, shorts} from '../cmds';
 import Input from './input';
 import Log from './log';
 
@@ -28,19 +28,21 @@ function getMatches(key) {
 		return;
 	}
 	const keys = key.split(' ');
-	const words = Object.keys(keywords).concat(Object.keys(shorts));
+	const words = Object.keys(allwords);
 	if (keys.length <= 1) {
 		return filter(words, key);
 	}
-	const cmd = keywords[keys[0]];
+	const cmd = allwords[keys[0]];
 	if (!cmd || !cmd.params || cmd.params.length <= 0) {
 		return;
 	}
 	const arg = cmd.params[keys.length - 2];
-	const matches = filter(arg.values(), keys[keys.length - 1]);
-	return matches.map(m => {
-		return keys.slice(0, keys.length-1).concat(m).join(' ');
-	});
+	if (arg.values) {
+		const matches = filter(arg.values(), keys[keys.length - 1]);
+		return matches.map(m => {
+			return keys.slice(0, keys.length-1).concat(m).join(' ');
+		});
+	}
 }
 
 function filter(arr, str) {

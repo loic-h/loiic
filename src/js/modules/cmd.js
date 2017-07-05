@@ -1,5 +1,5 @@
 import events from '../events';
-import {keywords, shorts} from '../cmds';
+import {allwords, shorts} from '../cmds';
 
 events.on('cmd:run', run);
 
@@ -11,7 +11,7 @@ function run(key) {
 		const c = shorts[key];
 		return run(typeof c === 'function' ? c(params) : c);
 	}
-	let cmd = keywords[key];
+	let cmd = allwords[key];
 	if (!cmd) {
 		events.emit('log:404', key);
 		return;

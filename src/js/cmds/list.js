@@ -1,11 +1,11 @@
-import {keywords, shorts} from '.';
+import {allwords, shorts} from '.';
 
 export default {
 	key: 'list',
 	alias: ['ls'],
 	help: 'list all available commands',
 	out(ctx) {
-		const words = Object.keys(keywords).concat(Object.keys(shorts));
+		const words = Object.keys(allwords);
 		return `
 <div class="list">
 	<ul class="cmd-list">
