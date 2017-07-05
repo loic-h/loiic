@@ -11,7 +11,11 @@ export default {
 		const s = [];
 		Object.keys(options).forEach(k => {
 			s[k] = params => {
-				return `style ${k} ${params[0]}`;
+				let cmd = `style ${k}`;
+				if (params[0]) {
+					cmd += ` ${params[0]}`;
+				}
+				return cmd;
 			};
 		});
 		return s;
