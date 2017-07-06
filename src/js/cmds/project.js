@@ -16,33 +16,23 @@ Type <a href="/projects" class="cmd">projects</a> to see a list of the available
 		{
 			key: 'project_name',
 			values() {
-				return Object.keys(projects);
+				return Object.keys(projects).concat(['all']);
 			},
 			mandatory: true
 		}
 	],
 	out(d) {
 		const key = d.params[0];
-		const project = projects[key];
-		let content = '';
-		for (let k in project) {
-			if (project.hasOwnProperty(k)) {
-				const v = project[k];
-				content += `
-<li class="project-item project-item--${k}">
-	${getKey(k, v)}
-	${getValue(k, v, key)}
-</li>
-					`;
-			}
+		if (key === 'all') {
+			return `
+<ul class="project-all">
+	${Object.keys(projects).map(k => `
+		<li class="project-all__item">${getProject(k)}</li>
+	`).join('')}
+</all>
+			`;
 		}
-		return `
-<div class="project">
-	<ul>
-		${content}
-	</ul>
-</div>
-		`;
+		return getProject(key);
 	}
 };
 
@@ -74,4 +64,27 @@ function getValue(k, v, name) {
 	}
 
 	return `<span class="project-item__value project-item__value--${k}">${value}</span>`;
+}
+
+function getProject(key) {
+	const project = projects[key];
+		let content = '';
+	for (let k in project) {
+		if (project.hasOwnProperty(k)) {
+			const v = project[k];
+			content += `
+<li class="project-item project-item--${k}">
+	${getKey(k, v)}
+	${getValue(k, v, key)}
+</li>
+					`;
+			}
+		}
+		return `
+<div class="project">
+	<ul>
+		${content}
+	</ul>
+</div>
+	`;
 }
