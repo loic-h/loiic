@@ -22,10 +22,10 @@ function init() {
 
 	window.addEventListener('popstate', (e) => {
 		Cmd.clear();
-		go('home', false, false, false);
+		go('home', true, false, false);
 	});
 
-	go('home', false, false, false);
+	go('home', true, false, false);
 
 	page('*', (ctx, next) => {
 		let key = decodeURIComponent(ctx.params[0]);
