@@ -75,16 +75,7 @@ function setEvents() {
 		positionCursor();
 	});
 
-	cmder.addEventListener('click', e => {
-		const menu = target(e.target, '.cmder__button');
-		if (menu) {
-			return;
-		}
-
-		if (touched) {
-			dummy.focus();
-			return;
-		}
+	cursor.addEventListener('click', e => {
 		const key = getValue() === '' ? 'menu' : getValue();
 		events.emit('router:go', key);
 	});
