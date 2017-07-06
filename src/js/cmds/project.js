@@ -68,7 +68,7 @@ function getValue(k, v, name) {
 
 function getProject(key) {
 	const project = projects[key];
-		let content = '';
+	let content = '';
 	for (let k in project) {
 		if (project.hasOwnProperty(k)) {
 			const v = project[k];
@@ -77,10 +77,10 @@ function getProject(key) {
 	${getKey(k, v)}
 	${getValue(k, v, key)}
 </li>
-					`;
-			}
+			`;
 		}
-		return `
+	}
+	return `
 <div class="project">
 	<ul>
 		${content}
