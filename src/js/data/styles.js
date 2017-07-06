@@ -10,6 +10,7 @@ export default {
 			'.layout': 'color',
 			'.cursor': 'border-bottom-color',
 			'.cmder__button--menu span, .cmder__button--menu:before, .cmder__button--menu:after': 'background',
+			'.cmder__button--home span, .cmder__button--home:before, .cmder__button--home:after': 'background',
 			'.cmd:hover': 'border-color'
 		},
 		desc: 'set the main font color'
