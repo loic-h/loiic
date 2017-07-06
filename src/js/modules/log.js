@@ -1,7 +1,6 @@
 import events from '../events';
-import Input from './input';
 import scrollto from '../utils/scrollto';
-import move from 'move-js';
+import {mainwords} from '../cmds';
 
 const entryClass = 'log-entry';
 const blockClass = 'log-block';
@@ -63,12 +62,20 @@ Type <a href="/menu" class="cmd">menu</a> or <a href="/help" class="cmd">help</a
 
 function errorArgument(key, type) {
 	let message = 'Missing argument';
+	let href = '/help';
+	let label = 'help';
+	const helpCmd = mainwords['help'];
+	const exceptions = [helpCmd.key].concat(helpCmd.alias);
+	if (exceptions.indexOf(key) < 0) {
+		href += `/${key}`;
+		label += ` ${key}`;
+	}
 	if (type === 'wrong') {
 		message = 'Wrong argument';
 	}
 	return error(`
 ${key}: ${message}.<br />
-Type <a href="/help/${key}" class="cmd">help ${key}</a> to see how to use this command.
+Type <a href="${href}" class="cmd">${label}</a> to see how to use this command.
 	`);
 }
 
