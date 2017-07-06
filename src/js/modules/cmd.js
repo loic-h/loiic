@@ -6,9 +6,8 @@ import Input from './input';
 events.on('cmd:run', run);
 
 function run(key, showCmd, animCmd) {
-	const out = getOut(key);
 	Input.fill(key, () => {
-		Log.block(key, out, showCmd);
+		Log.block(key, getOut(key), showCmd);
 		Input.clear();
 	}, animCmd);
 }
@@ -19,7 +18,7 @@ function getOut(key) {
 	const params = keys.slice(1);
 	if (shorts[key]) {
 		const c = shorts[key];
-		return run(typeof c === 'function' ? c(params) : c);
+		return getOut(typeof c === 'function' ? c(params) : c);
 	}
 	let cmd = allwords[key];
 	if (!cmd) {
