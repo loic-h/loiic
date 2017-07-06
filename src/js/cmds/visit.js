@@ -7,7 +7,7 @@ export default {
 	alias: ['see', 'go'],
 	help: `
 Open a link to a website of a project.<br />
-Type <a href="/projects" class="cmd">projects</a> to see a list of the available projects.
+To see a list of the available projects type <a href="/projects" class="cmd">projects</a>.
 	`,
 	params: [
 		{

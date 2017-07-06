@@ -31,7 +31,7 @@ export default {
 		} else {
 			content = `
 <div class="help__text">
-	This website works like a terminal. Type a command, or click on it, to execute it. Below are a list of the main commands. To get more details on it, use <span class="bold">help command_name</span>.
+	This website works like a terminal or a console. Type a command, or click on it, to execute it. Below are a list of the main commands. To get more details on it, use <span class="bold">help command_name</span>.
 </div>
 <ul class="cmd-list">
 	${Object.keys(helps).sort().map((k) => `

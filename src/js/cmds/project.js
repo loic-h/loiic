@@ -10,7 +10,7 @@ export default {
 	},
 	help: `
 Display a project page.<br />
-Type <a href="/projects" class="cmd">projects</a> to see a list of the available projects.
+To see a list of the available projects type <a href="/projects" class="cmd">projects</a>.
 	`,
 	params: [
 		{
