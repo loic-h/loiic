@@ -12,7 +12,7 @@ export default {
 		const item = projects[k];
 		return `
 			<li class="projects__item">
-				<a href="${k}" class="cmd">${k}</a>
+				<a href="/${k}" class="cmd">${k}</a>
 			</li>
 		`;
 	}).join('')}
