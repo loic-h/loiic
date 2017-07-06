@@ -94,7 +94,8 @@
 	}
 
 	&-input {
-		padding-right: $base*4;
+		margin-right: $base*5;
+		position: relative;
 
 		&__container {
 			position: relative;
@@ -103,6 +104,12 @@
 			display: inline-block;
 			max-width: 100%;
 			vertical-align: top;
+			opacity: 1;
+			@include ease(opacity);
+
+			&.hide {
+				opacity: 0;
+			}
 		}
 
 		&__input {
@@ -112,6 +119,23 @@
 			span {
 				white-space: pre-wrap;
 			}
+		}
+	}
+
+	&-placeholder {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		opacity: 0.3;
+		z-index: 0;
+		width: 100%;
+		padding-left: $cursorWidth + $base/2;
+		opacity: 0;
+		@include ease(opacity);
+
+		&.active {
+			opacity: 0.5;
 		}
 	}
 }

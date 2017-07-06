@@ -20,6 +20,7 @@
 						<span class="cmder-input__input" contenteditable="true"></span>
 						<span class="cursor"></span>
 					</div>
+					<span class="cmder-placeholder"></span>
 				</div>
 				<div class="cmder__remote">
 					<a href="/home" class="cmder__button cmder__button--home" title="home"></a>

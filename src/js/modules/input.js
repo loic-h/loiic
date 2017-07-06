@@ -1,10 +1,12 @@
 import events from '../events';
 import History from './history';
+import Placeholder from './placeholder';
 import scrollto from '../utils/scrollto';
 import target from '../utils/target';
 
-let container;
+let layout;
 let cmder;
+let container;
 let dummy;
 let input;
 let cursor;
@@ -15,15 +17,18 @@ let active = true;
 let touched = false;
 
 function init(cont) {
-	container = cont;
-	cmder = container.querySelector('.cmder');
-	dummy = container.querySelector('.dummy');
-	input = container.querySelector('.cmder-input__input');
-	cursor = container.querySelector('.cursor');
-	homeButton = container.querySelector('.cmder__button--home');
+	layout = cont;
+	cmder = layout.querySelector('.cmder');
+	dummy = layout.querySelector('.dummy');
+	container = layout.querySelector('.cmder-input__container');
+	input = layout.querySelector('.cmder-input__input');
+	cursor = layout.querySelector('.cursor');
+	homeButton = layout.querySelector('.cmder__button--home');
 	defaultCursorWidth = window.getComputedStyle(cursor).width;
 
 	setEvents();
+
+	Placeholder.init(cont);
 
 	dummy.focus();
 }
@@ -33,9 +38,13 @@ function setEvents() {
 		if (touched) {
 			return;
 		}
-		setTimeout(() => dummy.focus(), 100);
+		focus();
 		positionCursor();
 	});
+
+	window.addEventListener('blur', blur);
+
+	window.addEventListener('focus', focus);
 
 	dummy.addEventListener('input', () => {
 		 if (active) {
@@ -80,8 +89,18 @@ function setEvents() {
 		events.emit('router:go', key);
 	});
 
-	container.addEventListener('touchstart', e => {
+	layout.addEventListener('touchstart', e => {
 		touched = true;
+	});
+
+	cmder.addEventListener('click', e => {
+		if (target(e.target, cursor) || target(e.target, '.cmder__remote')) {
+			return;
+		}
+		if (touched) {
+			dummy.focus();
+			return;
+		}
 	});
 
 	events.on('log', blocks => {
@@ -132,6 +151,8 @@ function type(text = '') {
 	}
 	positionCursor();
 	scrollto('end');
+
+	Placeholder.toggle(getValue());
 }
 
 function clear() {
@@ -164,6 +185,17 @@ function fillCb(current, goal, next) {
 
 function activate(foo=true) {
 	active = foo;
+}
+
+function focus() {
+	dummy.focus();
+	Placeholder.text('type');
+	container.classList.remove('hide');
+}
+
+function blur() {
+	Placeholder.text('focus');
+	container.classList.add('hide');
 }
 
 export default {
