@@ -8,6 +8,8 @@ let container;
 
 function init(cont) {
 	container = cont;
+
+	events.on('log:clear', clear);
 }
 
 function add(content) {
