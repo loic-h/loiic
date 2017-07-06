@@ -52,7 +52,7 @@ function getValue(k, v, name) {
 <ul class="project-item__list">
 	${v.map(item => {
 		const label = typeof item === 'object'
-			? `<a href="${item.url}">${item.name}</a>`
+			? `<a href="${item.url}" target="_blank">${item.name}</a>`
 			: item;
 		return `<li>${label}</li>`;
 	}).join('')}
