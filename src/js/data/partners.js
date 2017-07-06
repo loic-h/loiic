@@ -14,5 +14,13 @@ export default {
 	neonaut: {
 		name: 'Neonaut',
 		url: 'https://www.neonaut.de/'
+	},
+	komilfo: {
+		name: 'Komilfo',
+		url: 'http://www.komilfo-conseil.com/'
+	},
+	loiic: {
+		name: 'Loïc Hamet',
+		url: 'https://loiic.com'
 	}
 };

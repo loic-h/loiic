@@ -57,12 +57,15 @@ function getValue(k, v, name) {
 	if (k === 'url') {
 		return `<a href="/visit/${name}" class="cmd">visit ${name}</a>`;
 
-	} else if (k === 'with') {
+	} else if (Array.isArray(v)) {
 		value = `
-<ul class="project-item__with">
-	${v.map(item => `
-		<li>${item}</li>
-	`).join('')}
+<ul class="project-item__list">
+	${v.map(item => {
+		const label = typeof item === 'object'
+			? `<a href="${item.url}">${item.name}</a>`
+			: item;
+		return `<li>${label}</li>`;
+	}).join('')}
 </ul>
 		`;
 
@@ -70,5 +73,5 @@ function getValue(k, v, name) {
 		value = `<a href="${value.url}">${value.name}</a>`;
 	}
 
-	return `<span class="project-item__value">${value}</span>`;
+	return `<span class="project-item__value project-item__value--${k}">${value}</span>`;
 }
