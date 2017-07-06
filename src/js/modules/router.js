@@ -17,7 +17,7 @@ function init() {
 			} else {
 				window.open(url);
 			}
-		}, 1000);
+		}, 500);
 	});
 
 	window.addEventListener('popstate', (e) => {
