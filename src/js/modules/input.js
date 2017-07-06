@@ -162,7 +162,7 @@ function fillCb(current, goal, next) {
 	if (current.length < goal.length) {
 		current = goal.slice(0, current.length + 1);
 		type(current);
-		setTimeout(() => fillCb(current, goal, next), 40);
+		setTimeout(() => fillCb(current, goal, next), 80);
 	} else {
 		activate();
 		if (next) {
