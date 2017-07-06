@@ -16,25 +16,29 @@
 	&__remote {
 		position: absolute;
 		right: $base/2;
-		top: $base/2;
+		top: 0;
+		height: 100%;
 	}
 
 	&__button {
 		text-decoration: none;
-		display: inline-block;
-		vertical-align: middle;
-		margin-right: $base/2;
+		float: left;
 		opacity: 0.7;
 		@include ease;
+		width: 1.5em;
+		height: 100%;
 
 		&:hover {
 			opacity: 1;
 			transform: scale(1.1);
 		}
 
+		&--help {
+			text-align: center;
+			line-height: 2.3rem;
+		}
+
 		&--menu {
-			height: 0.75em;
-			width: 1em;
 			position: relative;
 
 			&:before,
@@ -47,21 +51,44 @@
 			span {
 				display: block;
 				height: 1px;
-				width: 100%;
+				width: 1em;
 				background: $fontColor;
-				position: absolute;
+				@include center;
 			}
 
 			&:before {
-				top: 0;
+				top: 30%;
 			}
 
 			&:after {
-				bottom: 0;
+				top: 70%;
 			}
 
 			span {
 				top: 50%;
+			}
+		}
+
+		&--home {
+			position: relative;
+			@include fadeout;
+
+			&:before,
+			&:after {
+				content: '';
+				width: 1em;
+				height: 1px;
+				background: $fontColor;
+				@include center(both);
+				transform: translate(-50%, -50%) rotate(45deg);
+			}
+
+			&:after {
+				transform: translate(-50%, -50%) rotate(-45deg);
+			}
+
+			&.active {
+				@include fadein;
 			}
 		}
 	}

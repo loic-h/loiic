@@ -22,6 +22,7 @@
 					</div>
 				</div>
 				<div class="cmder__remote">
+					<a href="/home" class="cmder__button cmder__button--home"></a>
 					<a href="/menu" class="cmder__button cmder__button--menu"><span></span></a>
 					<a href="/help" class="cmder__button cmder__button--help">?</a>
 				</div>

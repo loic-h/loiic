@@ -8,6 +8,7 @@ let cmder;
 let dummy;
 let input;
 let cursor;
+let homeButton;
 let ref;
 let defaultCursorWidth = 0;
 let active = true;
@@ -19,6 +20,7 @@ function init(cont) {
 	dummy = container.querySelector('.dummy');
 	input = container.querySelector('.cmder-input__input');
 	cursor = container.querySelector('.cursor');
+	homeButton = container.querySelector('.cmder__button--home');
 	defaultCursorWidth = window.getComputedStyle(cursor).width;
 
 	setEvents();
@@ -89,6 +91,14 @@ function setEvents() {
 
 	container.addEventListener('touchstart', e => {
 		touched = true;
+	});
+
+	events.on('log', blocks => {
+		if (blocks.length > 1) {
+			homeButton.classList.add('active');
+		} else {
+			homeButton.classList.remove('active');
+		}
 	});
 }
 

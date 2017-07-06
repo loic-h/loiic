@@ -15,6 +15,7 @@ function init(cont) {
 function add(content) {
 	container.insertAdjacentHTML('beforeend', content);
 	scrollto('end');
+	events.emit('log', container.querySelectorAll(`.${blockClass}`));
 }
 
 function entry(text, modifiers) {
