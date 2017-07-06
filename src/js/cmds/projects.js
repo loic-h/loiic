@@ -3,7 +3,7 @@ import projects from '../data/projects';
 export default {
 	key: 'projects',
 	alias: ['list', 'ls'],
-	help: 'list of projects',
+	help: 'Display a list of projects, on which the author has worked on.',
 	menu: true,
 	out(d) {
 		return `

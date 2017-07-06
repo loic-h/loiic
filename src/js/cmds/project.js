@@ -8,10 +8,13 @@ export default {
 		Object.keys(projects).forEach(k => s[k] = `project ${k}`);
 		return s;
 	},
-	help: 'show a project',
+	help: `
+Display a project page.<br />
+Type <a href="/projects" class="cmd">projects</a> to see a list of the available projects.
+	`,
 	params: [
 		{
-			key: 'project_key',
+			key: 'project_name',
 			values() {
 				return Object.keys(projects);
 			},

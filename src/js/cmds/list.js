@@ -3,7 +3,7 @@ import {allwords, shorts} from '.';
 export default {
 	key: 'list',
 	alias: ['ls'],
-	help: 'list all available commands',
+	help: 'Display a list all available commands.',
 	out(ctx) {
 		const words = Object.keys(allwords);
 		return `

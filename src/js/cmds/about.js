@@ -3,7 +3,7 @@
 export default {
 	key: 'about',
 	alias: [],
-	help: 'Learn more about the author',
+	help: 'Learn more about the author.',
 	menu: true,
 	out() {
 		return `

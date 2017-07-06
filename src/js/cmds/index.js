@@ -2,6 +2,7 @@ const cmds = [];
 const mainwords = {};
 const allwords = {};
 const helps = {};
+const allhelps = {};
 const shorts = {};
 
 function set(d) {
@@ -14,7 +15,8 @@ function set(d) {
 	if (d.help) {
 		const help = typeof d.help === 'function' ? d.help() : d.help;
 		helps[d.key] = help;
-		d.alias.forEach(a => helps[a] = help);
+		allhelps[d.key] = help;
+		d.alias.forEach(a => allhelps[a] = help);
 	}
 	if (d.shorts) {
 		const setShorts = d.shorts();
@@ -29,6 +31,7 @@ export default cmds;
 
 export {
 	helps,
+	allhelps,
 	mainwords,
 	allwords,
 	cmds,
@@ -54,8 +57,8 @@ import hello from './hello';
 set(hello);
 import help from './help';
 set(help);
-import go from './go';
-set(go);
+import visit from './visit';
+set(visit);
 import menu from './menu';
 set(menu);
 import list from './list';

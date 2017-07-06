@@ -5,7 +5,7 @@ let items = null;
 export default {
 	key: 'menu',
 	alias: [],
-	help: 'Display the main categories',
+	help: 'Display the main categories.',
 	out(ctx) {
 		if (!items) {
 			items = cmds.filter(a => a.menu);

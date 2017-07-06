@@ -6,7 +6,7 @@ export default {
 	key: 'contact',
 	alias: [],
 	menu: true,
-	help: 'Ways of contact',
+	help: 'Ways to contact the author.',
 	params: [
 		{
 			key: 'link',
