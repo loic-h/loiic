@@ -19,7 +19,7 @@
     "build:img": "npm-run-all svg:optim img:optim",
     "build:font": "npm-run-all font:copy",
     "build:fav": "npm-run-all fav:copy",
-    "build:assets": "npm-run-all build:js build:css build:sprite build:img build:font",
+    "build:assets": "npm-run-all build:js build:css build:sprite build:img build:font build:fav",
     "css:sass": "node-sass --include-path src/scss --include-path node_modules src/scss/app.scss dist/assets/css/app.css --source-map true",
     "css:prefix": "postcss --use autoprefixer -o dist/assets/css/app.css dist/assets/css/app.css",
     "babel:js": "browserify src/js/app.js -v -o dist/assets/js/app.js -d -t [babelify] -p [minifyify --map app.js.map --output dist/assets/js/app.js.map]",
