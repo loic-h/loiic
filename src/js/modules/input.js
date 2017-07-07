@@ -30,7 +30,11 @@ function init(cont) {
 
 	Placeholder.init(cont);
 
-	dummy.focus();
+	if (document.hasFocus()) {
+		focus();
+	} else {
+		blur();
+	}
 }
 
 function setEvents() {
@@ -190,11 +194,13 @@ function activate(foo=true) {
 function focus() {
 	dummy.focus();
 	Placeholder.text('type');
+	Placeholder.toggle(getValue());
 	container.classList.remove('hide');
 }
 
 function blur() {
 	Placeholder.text('focus');
+	Placeholder.show();
 	container.classList.add('hide');
 }
 

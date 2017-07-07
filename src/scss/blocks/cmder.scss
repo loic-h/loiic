@@ -105,7 +105,6 @@
 			max-width: 100%;
 			vertical-align: top;
 			opacity: 1;
-			@include ease(opacity);
 
 			&.hide {
 				opacity: 0;
@@ -132,7 +131,6 @@
 		width: 100%;
 		padding-left: $cursorWidth + $base/2;
 		opacity: 0;
-		@include ease(opacity);
 
 		&.active {
 			opacity: 0.5;

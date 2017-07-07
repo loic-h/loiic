@@ -21,4 +21,14 @@
 			z-index: 2;
 		}
 	}
+
+	&-block {
+
+		&:first-child {
+
+			.log-entry--cmd {
+				margin-top: 0;
+			}
+		}
+	}
 }
