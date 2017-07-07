@@ -36,6 +36,33 @@ To see a list of the available projects type <a href="/projects" class="cmd">pro
 	}
 };
 
+
+function getProject(key) {
+	const project = projects[key];
+	let content = '';
+	if (project.url) {
+		project.visit = project.url;
+	}
+	for (let k in project) {
+		if (project.hasOwnProperty(k)) {
+			const v = project[k];
+			content += `
+<li class="project-item project-item--${k}">
+	${getKey(k, v)}
+	${getValue(k, v, key)}
+</li>
+			`;
+		}
+	}
+	return `
+<div class="project">
+	<ul>
+		${content}
+	</ul>
+</div>
+	`;
+}
+
 function getKey(k, v) {
 	const key = k;
 	return `<span class="project-item__key">${key}</span>`;
@@ -45,6 +72,9 @@ function getValue(k, v, name) {
 	let value = v;
 
 	if (k === 'url') {
+		return `<a href="${v}">${v}</a>`;
+
+	} else if (k === 'visit') {
 		return `<a href="/visit/${name}" class="cmd">visit ${name}</a>`;
 
 	} else if (Array.isArray(v)) {
@@ -64,27 +94,4 @@ function getValue(k, v, name) {
 	}
 
 	return `<span class="project-item__value project-item__value--${k}">${value}</span>`;
-}
-
-function getProject(key) {
-	const project = projects[key];
-	let content = '';
-	for (let k in project) {
-		if (project.hasOwnProperty(k)) {
-			const v = project[k];
-			content += `
-<li class="project-item project-item--${k}">
-	${getKey(k, v)}
-	${getValue(k, v, key)}
-</li>
-			`;
-		}
-	}
-	return `
-<div class="project">
-	<ul>
-		${content}
-	</ul>
-</div>
-	`;
 }

@@ -9,7 +9,7 @@ export default {
 		who: 'deValence is a graphic design agency based in Paris.',
 		what: 'Agency website',
 		with: ['HTML', 'CSS', 'JS', 'ES6', 'PHP', 'Kirby'],
-		url: 'http://deValence.net'
+		url: 'http://devalence.net'
 	},
 	selux: {
 		title: 'selux',
