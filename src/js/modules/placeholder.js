@@ -4,6 +4,7 @@ const texts = {
 };
 
 let container;
+let active = true;
 
 function init(cont) {
 	container = cont.querySelector('.cmder-placeholder');
@@ -11,6 +12,9 @@ function init(cont) {
 }
 
 function show() {
+	if (!active) {
+		return;
+	}
 	container.classList.add('active');
 }
 
@@ -30,10 +34,18 @@ function text(key) {
 	container.innerHTML = texts[key];
 }
 
+function activate(foo=true) {
+	active = foo;
+	if (!active) {
+		hide();
+	}
+}
+
 export default {
 	init,
 	show,
 	hide,
 	toggle,
-	text
+	text,
+	activate
 };

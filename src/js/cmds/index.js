@@ -4,6 +4,7 @@ const allwords = {};
 const helps = {};
 const allhelps = {};
 const shorts = {};
+const inits = [];
 
 function set(d) {
 	cmds.push(d);
@@ -25,6 +26,13 @@ function set(d) {
 			allwords[s] = d;
 		});
 	}
+	if (d.init) {
+		inits.push(d.init);
+	}
+}
+
+function init() {
+	inits.forEach(foo => foo());
 }
 
 export default cmds;
@@ -35,7 +43,8 @@ export {
 	mainwords,
 	allwords,
 	cmds,
-	shorts
+	shorts,
+	init
 };
 
 
@@ -65,3 +74,6 @@ import list from './list';
 set(list);
 import style from './style';
 set(style);
+
+import neo from './neo';
+set(neo);

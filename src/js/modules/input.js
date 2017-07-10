@@ -15,6 +15,7 @@ let ref;
 let defaultCursorWidth = 0;
 let active = true;
 let touched = false;
+let value = '';
 
 function init(cont) {
 	layout = cont;
@@ -52,12 +53,19 @@ function setEvents() {
 
 	dummy.addEventListener('input', () => {
 		 if (active) {
-			type(getValue());
+			type(dummy.value);
 			scrollto();
+			events.emit('input', getValue());
+		} else {
+			dummy.value = '';
 		}
 	});
 
 	dummy.addEventListener('keydown', (e) => {
+		if (!active) {
+			return;
+		}
+
 		positionCursor();
 
 		switch(e.key) {
@@ -85,7 +93,9 @@ function setEvents() {
 	});
 
 	dummy.addEventListener('keyup', (e) => {
-		positionCursor();
+		if (active) {
+			positionCursor();
+		}
 	});
 
 	cursor.addEventListener('click', e => {
@@ -98,6 +108,11 @@ function setEvents() {
 	});
 
 	cmder.addEventListener('click', e => {
+		if (!active) {
+			e.stopPropagation();
+			e.preventDefault();
+			return;
+		}
 		if (target(e.target, cursor) || target(e.target, '.cmder__remote')) {
 			return;
 		}
@@ -128,6 +143,9 @@ function positionCursor() {
 		width = defaultCursorWidth;
 	} else if (index >= spans.length) {
 		ref = spans[spans.length - 1];
+		if (!ref) {
+			return;
+		}
 		top = ref.offsetTop + 'px';
 		left = (ref.offsetLeft + ref.offsetWidth) + 'px';
 		width = defaultCursorWidth;
@@ -143,9 +161,10 @@ function positionCursor() {
 
 
 function type(text = '') {
-	if (text !== getValue()) {
+	if (text !== dummy.value) {
 		dummy.value = text;
 	}
+	value = text;
 	input.innerHTML = '';
 	const letters = Array.from(text);
 	for(let i in letters) {
@@ -156,7 +175,7 @@ function type(text = '') {
 	positionCursor();
 	scrollto('end');
 
-	Placeholder.toggle(getValue());
+	Placeholder.toggle(value);
 }
 
 function clear() {
@@ -164,23 +183,25 @@ function clear() {
 }
 
 function getValue() {
-	return dummy.value;
+	return value;
 }
 
-function fill(key, next, anim) {
+function fill(key, next, anim, time, act=true) {
 	activate(false);
 	const goal = key;
 	let current = anim ? getValue() : goal;
-	fillCb(current, goal, next);
+	fillCb(current, goal, next, time, act);
 }
 
-function fillCb(current, goal, next) {
-	if (current.length < goal.length) {
-		current = goal.slice(0, current.length + 1);
+function fillCb(current, goal, next, time, act=true) {
+	if (current !== goal) {
+		current = current.length < goal.length
+			? goal.slice(0, current.length + 1)
+			: current.slice(0, current.length - 1);
 		type(current);
-		setTimeout(() => fillCb(current, goal, next), 80);
+		setTimeout(() => fillCb(current, goal, next, time, act), time || 80);
 	} else {
-		activate();
+		activate(act);
 		if (next) {
 			next();
 		}
@@ -196,12 +217,14 @@ function focus() {
 	Placeholder.text('type');
 	Placeholder.toggle(getValue());
 	container.classList.remove('hide');
+	events.emit('focus');
 }
 
 function blur() {
 	Placeholder.text('focus');
 	Placeholder.show();
 	container.classList.add('hide');
+	events.emit('blur');
 }
 
 export default {
@@ -209,5 +232,6 @@ export default {
 	clear,
 	type,
 	getValue,
-	fill
+	fill,
+	activate
 };

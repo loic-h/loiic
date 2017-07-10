@@ -38,6 +38,7 @@
 				</div>
 			</div>
 		</div>
+		<div id="freeze"></div>
 	</div>
 	<script type="text/javascript" src="/assets/js/app.js"></script>
 </body>
