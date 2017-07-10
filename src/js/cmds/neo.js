@@ -17,30 +17,23 @@ let current = -1;
 export default {
 	key: 'neo',
 	init() {
-		initTimeout();
-		events.on('input', () => {
-			if (current < 0) {
-				cancel();
-			}
-		});
 		events.on('blur', () => {
-			if (current < 0) {
-				cancel();
-			}
+			cancel();
 		});
 		events.on('focus', () => {
 			if (current < 0) {
 				initTimeout();
 			}
 		});
+
+		if (document.hasFocus()) {
+			initTimeout();
+		}
 	}
 };
 
 function initTimeout() {
-	current = -1;
-	if (timer) {
-		clearTimeout(timer);
-	}
+	clearTimeout(timer);
 	timer = setTimeout(display, iniTime);
 }
 
@@ -50,24 +43,24 @@ function display(index) {
 	current ++;
 	Input.fill('', () => {
 		if(cmds[current]) {
+			clearTimeout(timer);
 			timer = setTimeout(() => {
 				Input.fill(cmds[current], () => {
+					clearTimeout(timer);
 					timer = setTimeout(display, waitTime);
 				}, true);
 			}, waitTime);
 		} else {
-			finish();
+			cancel();
 		}
 	}, true);
 }
 
 function cancel() {
-	initTimeout();
-}
-
-function finish() {
+	current = -1;
+	clearTimeout(timer);
+	Input.clear();
 	Placeholder.activate(true);
 	Placeholder.show();
 	events.emit('freeze', false);
-	cancel();
 }

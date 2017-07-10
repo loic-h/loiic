@@ -16,6 +16,7 @@ let defaultCursorWidth = 0;
 let active = true;
 let touched = false;
 let value = '';
+let fillTimer;
 
 function init(cont) {
 	layout = cont;
@@ -180,6 +181,8 @@ function type(text = '') {
 
 function clear() {
 	type();
+	clearTimeout(fillTimer);
+	fillTimer = null;
 }
 
 function getValue() {
@@ -199,7 +202,11 @@ function fillCb(current, goal, next, time, act=true) {
 			? goal.slice(0, current.length + 1)
 			: current.slice(0, current.length - 1);
 		type(current);
-		setTimeout(() => fillCb(current, goal, next, time, act), time || 80);
+		const time = time || 80;
+		clearTimeout(fillTimer)
+		fillTimer = setTimeout(() => {
+			fillCb(current, goal, next, time, act);
+		}, time);
 	} else {
 		activate(act);
 		if (next) {
