@@ -202,8 +202,8 @@ function fillCb(current, goal, next, time, act=true) {
 			? goal.slice(0, current.length + 1)
 			: current.slice(0, current.length - 1);
 		type(current);
-		const time = time || 80;
-		clearTimeout(fillTimer)
+		time = time || 80;
+		clearTimeout(fillTimer);
 		fillTimer = setTimeout(() => {
 			fillCb(current, goal, next, time, act);
 		}, time);
