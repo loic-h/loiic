@@ -49,12 +49,12 @@ export default {
 	},
 	paullepreux: {
 		title: 'Paul Lepreux',
-		when: '2017',
+		when: '2013',
 		for: partners.devalence,
 		design: partners.devalence,
 		who: 'Paul Lepreux is a french photographer based in Paris and Specialized in luxury.',
 		what: 'Portfolio website',
-		with: ['HTML', 'CSS', 'JS', 'ES6', 'PHP', 'Custom made backend'],
+		with: ['HTML', 'CSS', 'JS', 'RequireJS', 'PHP', 'Custom made backend'],
 		url: 'http://www.paullepreux.com'
 	},
 	lilianvontrapp: {
