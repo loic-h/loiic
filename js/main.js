@@ -1,8 +1,7 @@
-import Universe from "./Universe";
-
+import Ddder from "./Ddder";
 
 export default() => {
-  const universe = new Universe();
-
-  universe.build();
+  const ddd = new Ddder();
+  ddd.setup();
+  ddd.create();
 };

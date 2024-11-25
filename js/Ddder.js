@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const TRESHOLD = 0.2;
 const LINE_MAX = 4;
+
 class Ddder {
   scene;
   camera;
@@ -30,11 +31,11 @@ class Ddder {
     this.renderer.setSize(width, height);
   }
 
-  setup(width, height) {
+  setup() {
     this.renderer = new THREE.WebGLRenderer({antialias: true});
     this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.setSize(width, height);
 
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     this.renderer.setClearColor( 0xffffff, 1 );
     document.body.appendChild( this.renderer.domElement );
@@ -42,9 +43,9 @@ class Ddder {
     this.scene = new THREE.Scene();
 
     this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
-    this.boom = new THREE.Group();
-    this.boom.add(this.camera);
-    this.scene.add(this.boom);
+    this.group = new THREE.Group();
+    this.group.add(this.camera);
+    this.scene.add(this.group);
     this.camera.position.set( 0, 0, 10 );
     this.camera.lookAt( 0, 0, 0 );
 
@@ -55,6 +56,14 @@ class Ddder {
     this.render();
 
     this.initOrbit();
+
+    window.addEventListener("resize", () => this.resize());
+  }
+
+  resize() {
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+    this.render();
   }
 
   showHelpers() {
@@ -102,8 +111,8 @@ class Ddder {
     const normX = (( this.mouse.x - winWidth / 2 ) / (winWidth / 2));
     const normY = (( this.mouse.y - winHeight / 2 ) / (winHeight / 2));
 
-    this.boom.rotation.y = normX * TRESHOLD;
-    this.boom.rotation.x = normY * TRESHOLD;
+    this.group.rotation.y = normX * TRESHOLD;
+    this.group.rotation.x = normY * TRESHOLD;
 
     this.render();
   }
@@ -117,6 +126,7 @@ class Ddder {
   }
 
   drawLine({ x, y, z}, color = 0x000000) {
+    console.log("drawLine")
     const raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(this.origin, this.camera);
 
