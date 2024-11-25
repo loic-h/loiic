@@ -1,6 +1,6 @@
-# UNVRS
+# loiic.com
 
-A 3 dimension universe genrator.
+Code for my showcase website
 
 ## Installation
 ```shell
