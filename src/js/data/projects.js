@@ -86,7 +86,7 @@ export default {
 	},
 	tunnel: {
 		title: 'Tunnel',
-		when: '2015',
+		when: '2013',
 		design: partners.komilfo,
 		who: 'Tunnel is a TV show developed by Canal+.',
 		what: 'Development of the promotional website',
