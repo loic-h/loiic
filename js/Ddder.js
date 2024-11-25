@@ -120,7 +120,6 @@ class Ddder {
     const planeZ = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
     const intersectPoint = new THREE.Vector3(0, 0, 0);
     raycaster.ray.intersectPlane(planeZ, intersectPoint);
-    console.log(intersectPoint)
     const points = [];
     points.push( intersectPoint );
     points.push( new THREE.Vector3( x, y, z ) );
