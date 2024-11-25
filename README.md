@@ -1,5 +1,14 @@
-# loiic
+# UNVRS
 
-How to build:
-- development: npm run watch
-- production: npm start
+A 3 dimension universe genrator.
+
+## Installation
+```shell
+npm install
+```
+
+## Development
+
+```shell
+npm run dev
+```

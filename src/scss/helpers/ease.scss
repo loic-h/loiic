@@ -1,3 +1,0 @@
-@mixin ease($property:all, $easeD:$easeDuration, $easeF:$easeFunction) {
-	transition: $property $easeD $easeF;
-}
