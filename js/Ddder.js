@@ -3,6 +3,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const TRESHOLD = 0.2;
 const LINE_MAX = 4;
+const BG_COLOR = "#212123";
+const LINE_COLOR = 0x505050;
 
 class Ddder {
   scene;
@@ -10,16 +12,12 @@ class Ddder {
   renderer;
   controls;
   animating = false;
-  origin = {
-    x: 0,
-    y: 0,
-    z: 0
-  };
   pointer;
   mouse;
   moveTimeout;
   disableAnimateLook = false;
   lastPosition = { x: 0, y: 0 }
+
 
   constructor() {
     this.origin = new THREE.Vector2();
@@ -27,17 +25,13 @@ class Ddder {
     this.mouse = { x: 0 , y: 0 };
   }
 
-  setSize(width, height) {
-    this.renderer.setSize(width, height);
-  }
-
-  setup() {
+  setup(bgColor) {
     this.renderer = new THREE.WebGLRenderer({antialias: true});
     this.renderer.setPixelRatio(window.devicePixelRatio);
 
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
-    this.renderer.setClearColor( 0xffffff, 1 );
+    this.renderer.setClearColor( BG_COLOR, 1 );
     document.body.appendChild( this.renderer.domElement );
 
     this.scene = new THREE.Scene();
@@ -47,7 +41,7 @@ class Ddder {
     this.group.add(this.camera);
     this.scene.add(this.group);
     this.camera.position.set( 0, 0, 10 );
-    this.camera.lookAt( 0, 0, 0 );
+    this.camera.lookAt(0, 0, 0);
 
     // this.showHelpers();
 
@@ -58,6 +52,8 @@ class Ddder {
     this.initOrbit();
 
     window.addEventListener("resize", () => this.resize());
+
+    this.create();
   }
 
   resize() {
@@ -76,7 +72,7 @@ class Ddder {
   }
 
   create() {
-    for (let i = 0; i < LINE_MAX; i ++) {
+    for (let i = 1; i <= LINE_MAX; i ++) {
       this.drawLine({ x: this.randomNum(), y: this.randomNum(), z: this.randomNum() });
     }
   }
@@ -117,23 +113,14 @@ class Ddder {
     this.render();
   }
 
-  setOriginX(x) {
-    this.origin.x = (x / window.innerWidth) * 2 - 1;
-  }
-
-  setOriginY(y) {
-    this.origin.y = -(y / window.innerHeight) * 2 + 1;
-  }
-
-  drawLine({ x, y, z}, color = 0x000000) {
-    console.log("drawLine")
+  drawLine({ x, y, z}, color = LINE_COLOR) {
     const raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(this.origin, this.camera);
 
     const planeZ = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-    const intersectPoint = new THREE.Vector3();
+    const intersectPoint = new THREE.Vector3(0, 0, 0);
     raycaster.ray.intersectPlane(planeZ, intersectPoint);
-
+    console.log(intersectPoint)
     const points = [];
     points.push( intersectPoint );
     points.push( new THREE.Vector3( x, y, z ) );
