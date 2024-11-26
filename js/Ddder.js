@@ -6,6 +6,8 @@ const LINE_MAX = 4;
 const BG_COLOR = "#212123";
 const LINE_COLOR = 0x505050;
 
+const isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
+
 class Ddder {
   scene;
   camera;
@@ -25,7 +27,8 @@ class Ddder {
     this.mouse = { x: 0 , y: 0 };
   }
 
-  setup(bgColor) {
+  setup() {
+    console.log("setuup")
     this.renderer = new THREE.WebGLRenderer({antialias: true});
     this.renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -45,7 +48,7 @@ class Ddder {
 
     // this.showHelpers();
 
-    this.initLook();
+    this.initMouseLook();
 
     this.render();
 
@@ -81,7 +84,9 @@ class Ddder {
     this.controls = new OrbitControls( this.camera, this.renderer.domElement );
   }
 
-  initLook() {
+  initMouseLook() {
+    if (isTouch) return;
+
     this.renderer.domElement.addEventListener("mousemove", (e) => {
       clearTimeout(this.moveTimeout);
       this.animate = true;
